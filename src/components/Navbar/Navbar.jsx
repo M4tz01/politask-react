@@ -1,45 +1,85 @@
 import "./Navbar.css";
+import { motion } from "framer-motion";
 
 import logo from "../../assets/images/logo.png";
 import user from "../../assets/images/user.png";
 
 function Navbar() {
-    return (
-    <header className="container">
-        <nav className="navbar">
+    const menuVariants = {
+    hidden: { opacity: 0, y: -50 },
+    visible: {
+        opacity: 1,
+        y: 0,
+        transition: {
+        duration: 0.5,
+        ease: "easeOut",
+        when: "beforeChildren",
+        staggerChildren: 0.1,
+        },
+    },
+    };
 
-        <div className="navbar__brand">
-            <img
-            src={logo}
-            alt="logo"
-            className="navbar__img"
-            width="80"
-            />
+    const itemVariants = {
+    hidden: { opacity: 0, y: -20 },
+    visible: { opacity: 1, y: 0 },
+    };
+
+    return (
+    <motion.header
+        className="container"
+        initial="hidden"
+        animate="visible"
+        variants={menuVariants}
+    >
+        <nav className="navbar">
+        <motion.div className="navbar__brand" variants={itemVariants}>
+            <img src={logo} alt="logo" className="navbar__img" width="80" />
 
             <h1 className="navbar__logo">
             POLI
-                <span className="navbar__logo--primary">
-                -TASK
-            </span>
+            <span className="navbar__logo--primary">-TASK</span>
             </h1>
-        </div>
+        </motion.div>
 
         <ul className="navbar__menu">
-            <li><a href="#inicio">Inicio</a></li>
-            <li><a href="#nosotros">Nosotros</a></li>
-            <li><a href="#app">App</a></li>
-            <li><a href="#recompensas">Recompensas</a></li>
-            <li><a href="#gallery">Galería</a></li>
-            <li><a href="#contacto">Contacto</a></li>
+            {[
+            ["Inicio", "#inicio"],
+            ["Nosotros", "#nosotros"],
+            ["App", "#app"],
+            ["Recompensas", "#recompensas"],
+            ["Galería", "#gallery"],
+            ["Contacto", "#contacto"],
+            ].map(([text, href], index) => (
+            <motion.li key={index} variants={itemVariants}>
+                <motion.a
+                href={href}
+                whileHover={{
+                    y: -4,
+                    scale: 1.05,
+                    color: "#3f2beb",
+                }}
+                transition={{ type: "spring", stiffness: 300 }}
+                >
+                {text}
+                </motion.a>
+            </motion.li>
+            ))}
         </ul>
 
-        <div className="navbar__login">
+        <motion.div className="navbar__login" variants={itemVariants}>
             <img src={user} alt="user" width="40" />
-            <a href="/">Login</a>
-        </div>
-
+            <motion.a
+            href="/"
+            whileHover={{
+                scale: 1.08,
+                color: "#873114",
+            }}
+            >
+            Login
+            </motion.a>
+        </motion.div>
         </nav>
-    </header>
+    </motion.header>
     );
 }
 
