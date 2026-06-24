@@ -8,6 +8,9 @@ import FAQ from "./components/FAQ/FAQ";
 import Contact from "./components/Contact/Contact";
 import Footer from "./components/Footer/Footer";
 
+import appFirebase from "./firebase";
+console.log("Firebase conectado:", appFirebase);
+
 function App() {
   return (
     <>
