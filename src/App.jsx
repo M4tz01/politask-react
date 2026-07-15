@@ -12,6 +12,7 @@ import Footer from "./components/Footer/Footer";
 
 import Register from "./pages/Register";
 import Login from "./pages/Login";
+import Dashboard from "./pages/Dashboard"; 
 
 import appFirebase from "./firebase";
 console.log("Firebase conectado:", appFirebase);
@@ -38,6 +39,7 @@ function App() {
       <Route path="/" element={<Home />} />
       <Route path="/register" element={<Register />} />
       <Route path="/login" element={<Login />} />
+      <Route path="/dashboard" element={<Dashboard />} /> {/* 2. CREAMOS LA RUTA */}
     </Routes>
   );
 }

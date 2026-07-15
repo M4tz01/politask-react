@@ -21,7 +21,8 @@ function Login(){
 
             alert("Bienvenido");
 
-            navigate("/");
+            // CAMBIO AQUÍ: Redirigimos al Dashboard en lugar de la Landing Page
+            navigate("/dashboard"); 
 
         }catch(error){
 
@@ -39,44 +40,42 @@ function Login(){
 
             <form className="formulario" onSubmit={handleSubmit(iniciarSesion)}>
 
-    <div className="campo">
-        <label>Correo</label>
+                <div className="campo">
+                    <label>Correo</label>
 
-        <input
-            type="email"
-            placeholder="Ingresa tu correo"
-            {...register("email", { required: true })}
-        />
+                    <input
+                        type="email"
+                        placeholder="Ingresa tu correo"
+                        {...register("email", { required: true })}
+                    />
 
-        {errors.email && (
-            <span className="errors">Ingrese un correo</span>
-        )}
-    </div>
+                    {errors.email && (
+                        <span className="errors">Ingrese un correo</span>
+                    )}
+                </div>
 
-    <div className="campo">
-        <label>Contraseña</label>
+                <div className="campo">
+                    <label>Contraseña</label>
 
-        <input
-            type="password"
-            placeholder="Ingresa tu contraseña"
-            {...register("password", { required: true })}
-        />
+                    <input
+                        type="password"
+                        placeholder="Ingresa tu contraseña"
+                        {...register("password", { required: true })}
+                    />
 
-        {errors.password && (
-            <span className="errors">Ingrese la contraseña</span>
-        )}
-    </div>
+                    {errors.password && (
+                        <span className="errors">Ingrese la contraseña</span>
+                    )}
+                </div>
 
-    <button className="btn" type="submit">
-        Iniciar sesión
-    </button>
+                <button className="btn" type="submit">
+                    Iniciar sesión
+                </button>
 
-</form>
+            </form>
 
             <NavLink to="/register">
-
                 ¿No tienes cuenta? Regístrate
-
             </NavLink>
 
         </main>
