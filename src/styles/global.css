@@ -804,7 +804,7 @@ h2 {
     background:#2b2b2b;
 }
 
-.app.dark .contact__card h3,
+.app.dark .contact__card h3
 .app.dark .contact__card p{
     color:white;
 }
