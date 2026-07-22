@@ -6,6 +6,9 @@ import { signInWithEmailAndPassword,
         signInWithPopup
 } from "firebase/auth";
 
+
+import { toast } from "react-toastify";
+
 import { useForm } from "react-hook-form";
 import { NavLink, useNavigate } from "react-router-dom";
 
@@ -26,7 +29,7 @@ const iniciarSesion = async (data) => {
         data.password
     );
 
-    alert("Bienvenido a PoliTask");
+    toast.success("Inicio de sesión exitoso");
 
     navigate("/dashboard", { replace: true });
     } catch (error) {
@@ -49,7 +52,7 @@ const iniciarSesion = async (data) => {
         mensaje = "Comprueba tu conexión a Internet.";
     }
 
-    alert(mensaje);
+    toast.error(mensaje);
     }
 };
 const iniciarSesionConGoogle = async () => {
@@ -59,8 +62,7 @@ const iniciarSesionConGoogle = async () => {
             googleProvider
     );
 
-        alert("Bienvenido a PoliTask");
-
+        toast.success("Bienvenido a PoliTask");
         navigate("/dashboard", { replace: true });
     } catch (error) {
         console.error(
@@ -88,7 +90,7 @@ const iniciarSesionConGoogle = async () => {
         mensaje = "Comprueba tu conexión a Internet.";
         }
 
-        alert(mensaje);
+        toast.error(mensaje);
     }
 };
 

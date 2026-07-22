@@ -22,6 +22,10 @@ import Galeria from "./pages/Galeria";
 import Recompensas from "./pages/Recompensas";
 
 
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
+
 import appFirebase from "./firebase";
 console.log("Firebase conectado:", appFirebase);
 
@@ -46,6 +50,7 @@ function Home() {
 
 function App() {
   return (
+    <>
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/register" element={<Register />} />
@@ -57,6 +62,20 @@ function App() {
       <Route path="/galeria" element={<Galeria />} />
       <Route path="/recompensas" element={<Recompensas />} />
     </Routes>
+
+     <ToastContainer
+                position="top-right"
+                autoClose={3000}
+                hideProgressBar={false}
+                newestOnTop
+                closeOnClick
+                pauseOnHover
+                theme="colored"
+            />
+
+            </>
+
+
   );
 }
 
