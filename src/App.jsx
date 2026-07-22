@@ -30,6 +30,9 @@ function Home() {
       <FAQ />
       <Contact />
       <Footer />
+
+
+      <Chatbot/> 
     </>
   );
 }
