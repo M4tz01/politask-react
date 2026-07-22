@@ -28,7 +28,7 @@ html {
 
 body {
     font-family: var(--fuentePrincipal);
-    color: var(--colorTexto);
+    color: rgb(192, 26, 37);
     font-size: 1.6rem; /* mejor que 21px */
     line-height: 1.5;
 }
@@ -160,20 +160,19 @@ h2 {
     min-height: 400px;
 }
 
-.hero__text h2 {
-
-    color: var(--colorSecundario);
+.color1 {
     font-size: 5rem;
+    color: blue !important;
 }
 
-.hero__text h3 {
-    font-size: 3rem;
+.color2 {
+    font-size: 4rem;
+    color: rgb(169, 41, 27) !important;
 }
 
-.hero__text h4 {
-    font-size: 6rem;
-    font-weight: 900;
-    color: var(--colorResaltado);
+.color3 {
+    font-size: 5rem;
+    color: rgb(3, 3, 2) !important;
 }
 
 .hero__img img {
@@ -363,39 +362,45 @@ h2 {
     color: var(--colorResaltado)
 }
 
-.gallery__grid{
-    max-width:1200px;
-    margin:0 auto;
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:2.5rem;
+.gallery__grid {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2.5rem;
 }
 
-.gallery__card{
-    background:#fff;
-    border-radius:18px;
-    overflow:hidden;
-    border:4px solid #dce7f3;
-    box-shadow:0 10px 25px rgba(0,0,0,.15);
-    transition:.35s ease;
+.gallery__card {
+    background: #fff;
+    border-radius: 18px;
+    overflow: hidden;
+    border: 4px solid #dce7f3;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, .15);
+    transition: .35s ease;
 }
 
-.gallery__card:hover{
-    transform:translateY(-10px);
-    box-shadow:0 16px 32px rgba(0,0,0,.20);
+.gallery__card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 16px 32px rgba(0, 0, 0, .20);
 }
 
-.gallery__card img{
-    width:100%;
-    height:240px;
-    object-fit:cover;
-    display:block;
+.gallery__card img {
+    width: 100%;
+    height: 240px;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s ease;
 }
-.gallery__text{
-    margin-top:3rem;
-    font-size:1.8rem;
-    color:#293A4E;
-    font-weight:600;
+
+.gallery__card:hover img {
+    transform: scale(1.08);
+}
+
+.gallery__text {
+    margin-top: 3rem;
+    font-size: 1.8rem;
+    color: #293A4E;
+    font-weight: 600;
 }
 
 /* FAQ */
@@ -685,132 +690,4 @@ h2 {
         flex-direction: column;
         gap: 2rem;
     }
-}
-
-.app.dark{
-    background:#121212;
-    color:#f5f5f5;
-}
-
-/* Variables del tema */
-.app.dark{
-    --colorBackGround:#121212;
-    --colorUno:#181818;
-    --colorCuatro:#f5f5f5;
-    --colorCinco:#ffffff;
-    --colorTexto:#f5f5f5;
-}
-
-/* Navbar */
-.app.dark .navbar{
-    background:#181818;
-    border-bottom:1px solid #333;
-}
-
-.app.dark .navbar__menu a,
-.app.dark .navbar__login a,
-.app.dark .navbar__logo{
-    color:white;
-}
-
-.app.dark .theme-toggle{
-    background:#333;
-    color:white;
-}
-
-/* Hero */
-.app.dark .hero{
-    background:#1f1f1f;
-}
-
-/* About */
-.app.dark .about{
-    background:#222;
-}
-
-.app.dark .about__text p{
-    color:#f5f5f5;
-}
-
-/* Rewards */
-.app.dark .rewards{
-    background:#181818;
-}
-
-.app.dark .reward p{
-    color:white;
-}
-
-/* Download */
-.app.dark .download{
-    background:#1f1f1f;
-}
-
-.app.dark .download__info h2,
-.app.dark .download__info p,
-.app.dark .download__qr span{
-    color:white;
-}
-
-/* Gallery */
-.app.dark .gallery{
-    background:#222;
-}
-
-.app.dark .gallery__card{
-    background:#2b2b2b;
-    border-color:#444;
-}
-
-.app.dark .gallery__text{
-    color:white;
-}
-
-/* FAQ */
-.app.dark .faq{
-    background:#181818;
-}
-
-.app.dark .faq h2,
-.app.dark .faq h3,
-.app.dark .faq__item,
-.app.dark .faq__item p{
-    color:white;
-}
-
-.app.dark .faq__item{
-    border-bottom:1px solid #444;
-}
-
-/* Contact */
-.app.dark .contact{
-    background:#202020;
-}
-
-.app.dark .contact h2,
-.app.dark .contact h4,
-.app.dark .contact__subtitle{
-    color:white;
-}
-
-.app.dark .contact__form input,
-.app.dark .contact__form textarea{
-    background:#2b2b2b;
-    color:white;
-    border:1px solid #555;
-}
-
-.app.dark .contact__card{
-    background:#2b2b2b;
-}
-
-.app.dark .contact__card h3
-.app.dark .contact__card p{
-    color:white;
-}
-
-/* Footer */
-.app.dark .footer{
-    background:#181818;
-    color:white;
 }

@@ -1,5 +1,3 @@
-import { useState, useEffect } from "react";
-
 import Navbar from "./components/Navbar/Navbar";
 import Hero from "./components/Hero/Hero";
 import About from "./components/About/About";
@@ -11,30 +9,34 @@ import Contact from "./components/Contact/Contact";
 import Footer from "./components/Footer/Footer";
 
 function App() {
-  const [darkMode, setDarkMode] = useState(() => {
-    return localStorage.getItem("theme") === "dark";
-  });
-
-  useEffect(() => {
-    localStorage.setItem("theme", darkMode ? "dark" : "light");
-  }, [darkMode]);
-
   return (
-    <div className={darkMode ? "app dark" : "app"}>
-      <Navbar
-        darkMode={darkMode}
-        setDarkMode={setDarkMode}
-      />
+    <>
+      <Navbar />
+      <Hero />
+      <About />
+      <Rewards />
+      <Download />
+      <Gallery />
+      <FAQ />
+      <Contact />
+      <Footer />
+    </>
+  );
+}
 
-      <Hero darkMode={darkMode} />
-      <About darkMode={darkMode} />
-      <Rewards darkMode={darkMode} />
-      <Download darkMode={darkMode} />
-      <Gallery darkMode={darkMode} />
-      <FAQ darkMode={darkMode} />
-      <Contact darkMode={darkMode} />
-      <Footer darkMode={darkMode} />
-    </div>
+function App() {
+  return (
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/register" element={<Register />} />
+      <Route path="/login" element={<Login />} />
+      <Route path="/dashboard" element={<Dashboard />} /> {/* 2. CREAMOS LA RUTA */}
+      <Route path="/nosotros" element={<AboutUs />} />
+      <Route path="/app" element={<AppPage />} />
+      <Route path="/contacto" element={<Contacto />} />
+      <Route path="/galeria" element={<Galeria />} />
+      <Route path="/recompensas" element={<Recompensas />} />
+    </Routes>
   );
 }
 

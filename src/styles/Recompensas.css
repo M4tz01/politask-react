@@ -1,0 +1,525 @@
+
+/* ================================
+   PÁGINA RECOMPENSAS
+================================ */
+
+.rewards-page {
+    width: 100%;
+    overflow: hidden;
+}
+
+
+/* ================================
+   HERO
+================================ */
+
+.rewards-hero {
+    min-height: 550px;
+    padding: 90px 10%;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 80px;
+
+    background: linear-gradient(
+        135deg,
+        #f7f8ff,
+        #eef0ff
+    );
+}
+
+.rewards-hero__content {
+    max-width: 650px;
+}
+
+.rewards-hero__tag {
+    display: inline-block;
+
+    margin-bottom: 20px;
+
+    color: #6c63ff;
+
+    font-size: 14px;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+.rewards-hero h1 {
+    margin-bottom: 25px;
+
+    color: #1f2937;
+
+    font-size: 52px;
+    line-height: 1.1;
+}
+
+.rewards-hero p {
+    margin-bottom: 15px;
+
+    color: #626262;
+
+    font-size: 18px;
+    line-height: 1.7;
+}
+
+
+/* ================================
+   BOTONES
+================================ */
+
+.rewards-button,
+.rewards-cta button {
+
+    margin-top: 20px;
+
+    padding: 15px 32px;
+
+    border: none;
+    border-radius: 30px;
+
+    background: linear-gradient(
+        135deg,
+        #6c63ff,
+        #3f2beb
+    );
+
+    color: white;
+
+    font-size: 16px;
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: transform 0.3s ease;
+}
+
+.rewards-button:hover,
+.rewards-cta button:hover {
+    transform: scale(1.06);
+}
+
+
+/* ================================
+   TROFEO
+================================ */
+
+.rewards-hero__visual {
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+}
+
+.rewards-trophy {
+
+    width: 300px;
+    height: 300px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: linear-gradient(
+        135deg,
+        #6c63ff,
+        #3f2beb
+    );
+
+    font-size: 130px;
+
+    box-shadow:
+        0 25px 50px rgba(63, 43, 235, 0.3);
+
+    animation: floating 3s ease-in-out infinite;
+}
+
+
+/* ================================
+   CABECERAS
+================================ */
+
+.rewards-section__header {
+
+    max-width: 800px;
+
+    margin: 0 auto 60px;
+
+    text-align: center;
+}
+
+.rewards-section__header h2 {
+
+    margin-bottom: 20px;
+
+    color: #1f2937;
+
+    font-size: 40px;
+}
+
+.rewards-section__header p {
+
+    color: #626262;
+
+    font-size: 17px;
+
+    line-height: 1.7;
+}
+
+
+/* ================================
+   PUNTOS
+================================ */
+
+.points-section {
+
+    padding: 100px 10%;
+
+    background-color: white;
+}
+
+.points-grid {
+
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 30px;
+
+    max-width: 1100px;
+
+    margin: auto;
+}
+
+.points-card {
+
+    padding: 35px 28px;
+
+    border-radius: 18px;
+
+    background-color: #f7f8ff;
+
+    text-align: center;
+
+    transition: transform 0.3s ease;
+}
+
+.points-card:hover {
+
+    transform: translateY(-10px);
+}
+
+.points-card__icon {
+
+    margin-bottom: 20px;
+
+    font-size: 50px;
+}
+
+.points-card h3 {
+
+    margin-bottom: 15px;
+
+    color: #1f2937;
+}
+
+.points-card strong {
+
+    display: block;
+
+    margin-bottom: 15px;
+
+    color: #6c63ff;
+
+    font-size: 22px;
+}
+
+.points-card p {
+
+    color: #686868;
+
+    line-height: 1.6;
+}
+
+
+/* ================================
+   LISTA DE RECOMPENSAS
+================================ */
+
+.rewards-list {
+
+    padding: 100px 10%;
+
+    background-color: #f7f8ff;
+}
+
+.rewards-grid {
+
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 30px;
+
+    max-width: 1100px;
+
+    margin: auto;
+}
+
+.reward-card {
+
+    overflow: hidden;
+
+    border-radius: 18px;
+
+    background-color: white;
+
+    box-shadow:
+        0 10px 30px rgba(0, 0, 0, 0.08);
+
+    transition: transform 0.3s ease;
+}
+
+.reward-card:hover {
+
+    transform: translateY(-10px);
+}
+
+.reward-card__image {
+
+    height: 180px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    background: linear-gradient(
+        135deg,
+        #6c63ff,
+        #3f2beb
+    );
+
+    font-size: 75px;
+}
+
+.reward-card__content {
+
+    padding: 25px;
+}
+
+.reward-card h3 {
+
+    margin-bottom: 12px;
+
+    color: #1f2937;
+}
+
+.reward-card p {
+
+    margin-bottom: 20px;
+
+    color: #686868;
+
+    line-height: 1.6;
+}
+
+.reward-points {
+
+    color: #6c63ff;
+
+    font-weight: bold;
+}
+
+
+/* ================================
+   NIVELES
+================================ */
+
+.levels-section {
+
+    padding: 100px 10%;
+
+    background-color: white;
+}
+
+.levels-grid {
+
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 30px;
+
+    max-width: 1000px;
+
+    margin: auto;
+}
+
+.level-card {
+
+    padding: 35px;
+
+    border-left: 4px solid #6c63ff;
+
+    background-color: #f7f8ff;
+}
+
+.level-number {
+
+    display: block;
+
+    margin-bottom: 20px;
+
+    color: #6c63ff;
+
+    font-size: 30px;
+
+    font-weight: bold;
+}
+
+.level-card h3 {
+
+    margin-bottom: 15px;
+
+    color: #1f2937;
+}
+
+.level-card p {
+
+    color: #686868;
+
+    line-height: 1.6;
+}
+
+
+/* ================================
+   CTA
+================================ */
+
+.rewards-cta {
+
+    padding: 100px 20px;
+
+    background: linear-gradient(
+        135deg,
+        #6c63ff,
+        #3f2beb
+    );
+
+    text-align: center;
+}
+
+.rewards-cta h2 {
+
+    margin-bottom: 20px;
+
+    color: white;
+
+    font-size: 40px;
+}
+
+.rewards-cta p {
+
+    margin-bottom: 20px;
+
+    color: white;
+
+    font-size: 18px;
+}
+
+.rewards-cta button {
+
+    background-color: white;
+
+    color: #3f2beb;
+}
+
+
+/* ================================
+   ANIMACIÓN
+================================ */
+
+@keyframes floating {
+
+    0% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-15px);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+
+}
+
+
+/* ================================
+   RESPONSIVE
+================================ */
+
+@media (max-width: 1000px) {
+
+    .rewards-hero {
+
+        flex-direction: column;
+
+        text-align: center;
+    }
+
+    .points-grid,
+    .rewards-grid,
+    .levels-grid {
+
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+}
+
+
+@media (max-width: 600px) {
+
+    .rewards-hero {
+
+        padding: 70px 6%;
+    }
+
+    .rewards-hero h1 {
+
+        font-size: 36px;
+    }
+
+    .rewards-hero p {
+
+        font-size: 16px;
+    }
+
+    .rewards-trophy {
+
+        width: 230px;
+        height: 230px;
+
+        font-size: 100px;
+    }
+
+    .points-grid,
+    .rewards-grid,
+    .levels-grid {
+
+        grid-template-columns: 1fr;
+    }
+
+    .rewards-section__header h2 {
+
+        font-size: 32px;
+    }
+
+}
