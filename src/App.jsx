@@ -1,3 +1,5 @@
+import { useState, useEffect } from "react";
+
 import Navbar from "./components/Navbar/Navbar";
 import Hero from "./components/Hero/Hero";
 import About from "./components/About/About";
@@ -9,18 +11,30 @@ import Contact from "./components/Contact/Contact";
 import Footer from "./components/Footer/Footer";
 
 function App() {
+  const [darkMode, setDarkMode] = useState(() => {
+    return localStorage.getItem("theme") === "dark";
+  });
+
+  useEffect(() => {
+    localStorage.setItem("theme", darkMode ? "dark" : "light");
+  }, [darkMode]);
+
   return (
-    <>
-      <Navbar />
-      <Hero />
-      <About />
-      <Rewards />
-      <Download />
-      <Gallery />
-      <FAQ />
-      <Contact />
-      <Footer />
-    </>
+    <div className={darkMode ? "app dark" : "app"}>
+      <Navbar
+        darkMode={darkMode}
+        setDarkMode={setDarkMode}
+      />
+
+      <Hero darkMode={darkMode} />
+      <About darkMode={darkMode} />
+      <Rewards darkMode={darkMode} />
+      <Download darkMode={darkMode} />
+      <Gallery darkMode={darkMode} />
+      <FAQ darkMode={darkMode} />
+      <Contact darkMode={darkMode} />
+      <Footer darkMode={darkMode} />
+    </div>
   );
 }
 

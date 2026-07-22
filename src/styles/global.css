@@ -114,6 +114,28 @@ h2 {
     gap: 1rem;
 }
 
+.navbar__actions{
+    display:flex;
+    align-items:center;
+    gap:2rem;
+}
+
+.theme-toggle{
+    width:42px;
+    height:42px;
+    border:none;
+    border-radius:50%;
+    background:#f5f5f5;
+    cursor:pointer;
+    font-size:2rem;
+    transition:all .3s ease;
+}
+
+.theme-toggle:hover{
+    transform:scale(1.1);
+    background:#ddd;
+}
+
 .navbar__login img {
     width: 3.5rem;
     border-radius: 50%;
@@ -663,4 +685,132 @@ h2 {
         flex-direction: column;
         gap: 2rem;
     }
+}
+
+.app.dark{
+    background:#121212;
+    color:#f5f5f5;
+}
+
+/* Variables del tema */
+.app.dark{
+    --colorBackGround:#121212;
+    --colorUno:#181818;
+    --colorCuatro:#f5f5f5;
+    --colorCinco:#ffffff;
+    --colorTexto:#f5f5f5;
+}
+
+/* Navbar */
+.app.dark .navbar{
+    background:#181818;
+    border-bottom:1px solid #333;
+}
+
+.app.dark .navbar__menu a,
+.app.dark .navbar__login a,
+.app.dark .navbar__logo{
+    color:white;
+}
+
+.app.dark .theme-toggle{
+    background:#333;
+    color:white;
+}
+
+/* Hero */
+.app.dark .hero{
+    background:#1f1f1f;
+}
+
+/* About */
+.app.dark .about{
+    background:#222;
+}
+
+.app.dark .about__text p{
+    color:#f5f5f5;
+}
+
+/* Rewards */
+.app.dark .rewards{
+    background:#181818;
+}
+
+.app.dark .reward p{
+    color:white;
+}
+
+/* Download */
+.app.dark .download{
+    background:#1f1f1f;
+}
+
+.app.dark .download__info h2,
+.app.dark .download__info p,
+.app.dark .download__qr span{
+    color:white;
+}
+
+/* Gallery */
+.app.dark .gallery{
+    background:#222;
+}
+
+.app.dark .gallery__card{
+    background:#2b2b2b;
+    border-color:#444;
+}
+
+.app.dark .gallery__text{
+    color:white;
+}
+
+/* FAQ */
+.app.dark .faq{
+    background:#181818;
+}
+
+.app.dark .faq h2,
+.app.dark .faq h3,
+.app.dark .faq__item,
+.app.dark .faq__item p{
+    color:white;
+}
+
+.app.dark .faq__item{
+    border-bottom:1px solid #444;
+}
+
+/* Contact */
+.app.dark .contact{
+    background:#202020;
+}
+
+.app.dark .contact h2,
+.app.dark .contact h4,
+.app.dark .contact__subtitle{
+    color:white;
+}
+
+.app.dark .contact__form input,
+.app.dark .contact__form textarea{
+    background:#2b2b2b;
+    color:white;
+    border:1px solid #555;
+}
+
+.app.dark .contact__card{
+    background:#2b2b2b;
+}
+
+.app.dark .contact__card h3,
+.app.dark .contact__card p{
+    color:white;
+}
+
+/* Footer */
+.app.dark .footer{
+    background:#181818;
+    color:white;
 }
