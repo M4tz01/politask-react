@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 
 import logo from "../../assets/images/logo.png";
 import user from "../../assets/images/user.png";
+import { NavLink } from "react-router-dom";
+
 
 function Navbar() {
     const menuVariants = {
@@ -50,24 +52,41 @@ function Navbar() {
                 <ul className="navbar__menu">
                     {[
                         ["Inicio", "#inicio"],
-                        ["Nosotros", "#nosotros"],
-                        ["App", "#app"],
-                        ["Recompensas", "#recompensas"],
-                        ["Galería", "#gallery"],
-                        ["Contacto", "#contacto"],
+                        ["Nosotros", "/nosotros"],
+                        ["App", "/app"],
+                        ["Recompensas", "/recompensas"],
+                        ["Galería", "/galeria"],
+                        ["Contacto", "/contacto"],
                     ].map(([text, href], index) => (
                         <motion.li key={index} variants={itemVariants}>
-                            <motion.a
-                                href={href}
-                                whileHover={{
-                                    y: -4,
-                                    scale: 1.05,
-                                    color: "#3f2beb",
-                                }}
-                                transition={{ type: "spring", stiffness: 300 }}
-                            >
-                                {text}
-                            </motion.a>
+
+                                
+
+                            {text === "Nosotros" || text === "App" || text === "Contacto"
+                            || text === "Galeria" || text === "Recompensas"? (
+
+                                <NavLink className="navbar__link" to={href}>
+                                  {text}
+                                 </NavLink>
+
+                       ) : (
+
+                <motion.a
+                    href={href}
+                    whileHover={{
+                        y: -4,
+                        scale: 1.05,
+                        color: "#3f2beb",
+                    }}
+                    transition={{ type: "spring", stiffness: 300 }}
+                >
+                    {text}
+                </motion.a>
+
+            )}
+
+
+            
                         </motion.li>
                     ))}
                 </ul>
