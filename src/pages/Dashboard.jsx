@@ -29,6 +29,7 @@ function Dashboard() {
   const navigate = useNavigate();
   const [usuario, setUsuario] = useState(null);
   const [tareas, setTareas] = useState([]);
+  const [tareasDisponibles, setTareasDisponibles] = useState([]);
   const [idEdicion, setIdEdicion] = useState("");
   const [cargando, setCargando] = useState(true);
   const [guardando, setGuardando] = useState(false);
@@ -75,6 +76,33 @@ function Dashboard() {
     }
   };
 
+  const obtenerTareasDisponibles = async (uid) => {
+  try {
+    const snapshot = await getDocs(collection(dbFirebase, "tareas"));
+
+    const documentos = snapshot.docs
+      .map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+      }))
+      .filter(
+        (tarea) =>
+          tarea.usuarioId !== uid &&
+          tarea.estado === "Pendiente"
+      );
+
+    documentos.sort((a, b) => {
+      const fechaA = a.creadoEn?.seconds ?? 0;
+      const fechaB = b.creadoEn?.seconds ?? 0;
+      return fechaB - fechaA;
+    });
+
+    setTareasDisponibles(documentos);
+  } catch (error) {
+    console.error(error);
+  }
+};
+
   useEffect(() => {
     const cancelarObservador = onAuthStateChanged(authFirebase, (user) => {
       if (!user) {
@@ -83,7 +111,9 @@ function Dashboard() {
       }
 
       setUsuario(user);
+
       obtenerTareas(user.uid);
+      obtenerTareasDisponibles(user.uid);
     });
 
     return cancelarObservador;
@@ -412,6 +442,56 @@ function Dashboard() {
               ))}
             </div>
           )}
+        </section>
+        <section className="dashboard__panel">
+
+          <div className="dashboard__section-heading">
+          <span>Comunidad</span>
+          <h2>Tareas disponibles</h2>
+          <p>
+          Estas tareas fueron publicadas por otros estudiantes.
+          </p>
+          </div>
+
+          {tareasDisponibles.length === 0 ? (
+
+          <p>No existen tareas disponibles.</p>
+
+          ) : (
+
+          tareasDisponibles.map((tarea) => (
+
+          <article
+          className="task-card"
+          key={tarea.id}
+          >
+
+          <h3>{tarea.titulo}</h3>
+
+          <p>{tarea.descripcion}</p>
+
+          <p>
+          <strong>Categoría:</strong> {tarea.categoria}
+          </p>
+
+          <p>
+          <strong>Puntos:</strong> {tarea.puntos}
+          </p>
+
+          <p>
+          <strong>Publicado por:</strong> {tarea.usuarioEmail}
+          </p>
+
+          <button>
+          Aceptar tarea
+          </button>
+
+        </article>
+
+        ))
+
+        ) }
+
         </section>
       </main>
     </div>
