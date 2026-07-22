@@ -14,6 +14,13 @@ import Register from "./pages/Register";
 import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard"; 
 
+import AboutUs from "./pages/AboutUs";
+import AppPage from "./pages/AppPage";
+import Contacto from "./pages/Contacto";
+import Galeria from "./pages/Galeria";
+import Recompensas from "./pages/Recompensas";
+
+
 import appFirebase from "./firebase";
 console.log("Firebase conectado:", appFirebase);
 
@@ -40,6 +47,14 @@ function App() {
       <Route path="/register" element={<Register />} />
       <Route path="/login" element={<Login />} />
       <Route path="/dashboard" element={<Dashboard />} /> {/* 2. CREAMOS LA RUTA */}
+      <Route path="/nosotros" element={<AboutUs />} />
+      <Route path="/app" element={<AppPage />} />
+      <Route path="/contacto" element={<Contacto />} />
+      <Route path="/galeria" element={<Galeria />} />
+      <Route path="/recompensas" element={<Recompensas />} />
+
+
+
     </Routes>
   );
 }

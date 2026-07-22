@@ -1,0 +1,382 @@
+/* ================================
+   PÁGINA APP
+================================ */
+
+.app-page {
+    width: 100%;
+    overflow: hidden;
+}
+
+
+/* ================================
+   HERO
+================================ */
+
+.app-hero {
+    min-height: 600px;
+    padding: 90px 10%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 80px;
+    background: linear-gradient(
+        135deg,
+        #f7f8ff,
+        #eef0ff
+    );
+}
+
+.app-hero__content {
+    max-width: 650px;
+}
+
+.app-hero__tag {
+    display: inline-block;
+    margin-bottom: 20px;
+    color: #6c63ff;
+    font-size: 14px;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+.app-hero h1 {
+    margin-bottom: 25px;
+    color: #1f2937;
+    font-size: 52px;
+    line-height: 1.1;
+}
+
+.app-hero p {
+    margin-bottom: 15px;
+    color: #626262;
+    font-size: 18px;
+    line-height: 1.7;
+}
+
+.app-hero__button,
+.app-cta button {
+    margin-top: 20px;
+    padding: 15px 32px;
+    border: none;
+    border-radius: 30px;
+    background: linear-gradient(
+        135deg,
+        #6c63ff,
+        #3f2beb
+    );
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.app-hero__button:hover,
+.app-cta button:hover {
+    transform: scale(1.06);
+}
+
+
+/* ================================
+   TELÉFONO
+================================ */
+
+.app-hero__visual {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.app-phone {
+    width: 300px;
+    min-height: 550px;
+    padding: 15px;
+    border: 8px solid #1f2937;
+    border-radius: 35px;
+    background-color: white;
+    box-shadow: 0 25px 50px rgba(63, 43, 235, 0.25);
+    animation: floating 3s ease-in-out infinite;
+}
+
+.app-phone__header {
+    padding: 20px 10px;
+    border-radius: 20px;
+    background: linear-gradient(
+        135deg,
+        #6c63ff,
+        #3f2beb
+    );
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.app-phone__content {
+    padding: 25px 10px;
+}
+
+.app-welcome {
+    margin-bottom: 25px;
+    color: #1f2937;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.app-statistics {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 25px;
+}
+
+.app-stat {
+    flex: 1;
+    padding: 15px 5px;
+    border-radius: 12px;
+    background-color: #f0f1ff;
+    text-align: center;
+}
+
+.app-stat strong {
+    display: block;
+    color: #6c63ff;
+    font-size: 24px;
+}
+
+.app-stat span {
+    color: #686868;
+    font-size: 12px;
+}
+
+.app-task {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 15px;
+    padding: 15px;
+    border-radius: 12px;
+    background-color: #f7f8ff;
+}
+
+.app-task > span {
+    font-size: 25px;
+}
+
+.app-task strong {
+    color: #1f2937;
+    font-size: 13px;
+}
+
+.app-task p {
+    margin: 5px 0 0;
+    color: #686868;
+    font-size: 11px;
+    line-height: 1.4;
+}
+
+
+/* ================================
+   CARACTERÍSTICAS
+================================ */
+
+.app-features {
+    padding: 100px 10%;
+    background-color: white;
+}
+
+.app-section__header {
+    max-width: 800px;
+    margin: 0 auto 60px;
+    text-align: center;
+}
+
+.app-section__header h2 {
+    margin-bottom: 20px;
+    color: #1f2937;
+    font-size: 40px;
+}
+
+.app-section__header p {
+    color: #626262;
+    font-size: 17px;
+    line-height: 1.7;
+}
+
+.app-features__grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 25px;
+    max-width: 1200px;
+    margin: auto;
+}
+
+.app-feature {
+    padding: 30px 25px;
+    border-radius: 18px;
+    background-color: #f7f8ff;
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.app-feature:hover {
+    transform: translateY(-8px);
+}
+
+.app-feature__icon {
+    margin-bottom: 20px;
+    font-size: 45px;
+}
+
+.app-feature h3 {
+    margin-bottom: 15px;
+    color: #1f2937;
+    font-size: 20px;
+}
+
+.app-feature p {
+    color: #686868;
+    line-height: 1.6;
+}
+
+
+/* ================================
+   PROCESO
+================================ */
+
+.app-process {
+    padding: 100px 10%;
+    background-color: #f7f8ff;
+}
+
+.app-process__steps {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+    max-width: 1200px;
+    margin: auto;
+}
+
+.app-process__step {
+    padding: 30px;
+    border-left: 4px solid #6c63ff;
+    background-color: white;
+}
+
+.app-process__step > span {
+    display: block;
+    margin-bottom: 20px;
+    color: #6c63ff;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.app-process__step h3 {
+    margin-bottom: 15px;
+    color: #1f2937;
+}
+
+.app-process__step p {
+    color: #686868;
+    line-height: 1.6;
+}
+
+
+/* ================================
+   CTA
+================================ */
+
+.app-cta {
+    padding: 100px 20px;
+    background: linear-gradient(
+        135deg,
+        #6c63ff,
+        #3f2beb
+    );
+    text-align: center;
+}
+
+.app-cta h2 {
+    margin-bottom: 20px;
+    color: white;
+    font-size: 40px;
+}
+
+.app-cta p {
+    margin-bottom: 20px;
+    color: white;
+    font-size: 18px;
+}
+
+.app-cta button {
+    background-color: white;
+    color: #3f2beb;
+}
+
+
+/* ================================
+   ANIMACIÓN
+================================ */
+
+@keyframes floating {
+
+    0% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-15px);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+
+}
+
+
+/* ================================
+   RESPONSIVE
+================================ */
+
+@media (max-width: 1000px) {
+
+    .app-hero {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .app-features__grid,
+    .app-process__steps {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+}
+
+
+@media (max-width: 600px) {
+
+    .app-hero {
+        padding: 70px 6%;
+    }
+
+    .app-hero h1 {
+        font-size: 36px;
+    }
+
+    .app-hero p {
+        font-size: 16px;
+    }
+
+    .app-phone {
+        width: 270px;
+    }
+
+    .app-features__grid,
+    .app-process__steps {
+        grid-template-columns: 1fr;
+    }
+
+    .app-section__header h2 {
+        font-size: 32px;
+    }
+
+}
