@@ -3,6 +3,8 @@ createUserWithEmailAndPassword,
 updateProfile,
 } from "firebase/auth";
 
+import { toast } from "react-toastify";
+
 import { useForm } from "react-hook-form";
 import { NavLink, useNavigate } from "react-router-dom";
 import { authFirebase } from "../firebase";
@@ -26,6 +28,9 @@ const handleRegister = async (data) => {
         password
     );
 
+        toast.success("Cuenta creada correctamente");
+
+
     await updateProfile(newUserFirebase.user, {
         displayName: name,
     });
@@ -35,7 +40,7 @@ const handleRegister = async (data) => {
     navigate("/dashboard");
     } catch (error) {
     console.error(error);
-    alert("No se pudo crear la cuenta: " + error.message);
+    toast.error("No se pudo crear la cuenta");
     }
 };
 
