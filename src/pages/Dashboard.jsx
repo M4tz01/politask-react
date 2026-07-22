@@ -77,31 +77,25 @@ function Dashboard() {
   };
 
   const obtenerTareasDisponibles = async (uid) => {
-  try {
-    const snapshot = await getDocs(collection(dbFirebase, "tareas"));
-
-    const documentos = snapshot.docs
-      .map((doc) => ({
-        id: doc.id,
-        ...doc.data(),
-      }))
-      .filter(
-        (tarea) =>
-          tarea.usuarioId !== uid &&
-          tarea.estado === "Pendiente"
+    try {
+      // Pedimos explícitamente a Firestore las tareas de OTROS usuarios
+      const consultaComunidad = query(
+        collection(dbFirebase, "tareas"),
+        where("usuarioId", "!=", uid)
       );
 
-    documentos.sort((a, b) => {
-      const fechaA = a.creadoEn?.seconds ?? 0;
-      const fechaB = b.creadoEn?.seconds ?? 0;
-      return fechaB - fechaA;
-    });
+      const snapshot = await getDocs(consultaComunidad);
 
-    setTareasDisponibles(documentos);
-  } catch (error) {
-    console.error(error);
-  }
-};
+      const documentos = snapshot.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+      }));
+
+      setTareasDisponibles(documentos);
+    } catch (error) {
+      console.error("Error al obtener tareas disponibles:", error);
+    }
+  };
 
   useEffect(() => {
     const cancelarObservador = onAuthStateChanged(authFirebase, (user) => {
@@ -111,7 +105,6 @@ function Dashboard() {
       }
 
       setUsuario(user);
-
       obtenerTareas(user.uid);
       obtenerTareasDisponibles(user.uid);
     });
@@ -156,6 +149,7 @@ function Dashboard() {
 
       limpiarFormulario();
       await obtenerTareas(usuario.uid);
+      await obtenerTareasDisponibles(usuario.uid);
     } catch (error) {
       console.error(error);
       setErrorGeneral("No se pudo guardar la tarea. Inténtalo nuevamente.");
@@ -178,6 +172,10 @@ function Dashboard() {
     });
 
     window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
+  const aceptarTarea = async (tarea) => {
+    console.log("Tarea aceptada:", tarea);
   };
 
   const eliminarTarea = async (id) => {
@@ -443,55 +441,40 @@ function Dashboard() {
             </div>
           )}
         </section>
-        <section className="dashboard__panel">
 
+        <section className="dashboard__panel">
           <div className="dashboard__section-heading">
-          <span>Comunidad</span>
-          <h2>Tareas disponibles</h2>
-          <p>
-          Estas tareas fueron publicadas por otros estudiantes.
-          </p>
+            <span>Comunidad</span>
+            <h2>Tareas disponibles</h2>
+            <p>Estas tareas fueron publicadas por otros estudiantes.</p>
           </div>
 
           {tareasDisponibles.length === 0 ? (
-
-          <p>No existen tareas disponibles.</p>
-
+            <p className="dashboard__empty">No existen tareas disponibles.</p>
           ) : (
-
-          tareasDisponibles.map((tarea) => (
-
-          <article
-          className="task-card"
-          key={tarea.id}
-          >
-
-          <h3>{tarea.titulo}</h3>
-
-          <p>{tarea.descripcion}</p>
-
-          <p>
-          <strong>Categoría:</strong> {tarea.categoria}
-          </p>
-
-          <p>
-          <strong>Puntos:</strong> {tarea.puntos}
-          </p>
-
-          <p>
-          <strong>Publicado por:</strong> {tarea.usuarioEmail}
-          </p>
-
-          <button>
-          Aceptar tarea
-          </button>
-
-        </article>
-
-        ))
-
-        ) }
-
+            tareasDisponibles.map((tarea) => (
+              <article className="task-card" key={tarea.id}>
+                <h3>{tarea.titulo}</h3>
+                <p>{tarea.descripcion}</p>
+                <p>
+                  <strong>Categoría:</strong> {tarea.categoria}
+                </p>
+                <p>
+                  <strong>Puntos:</strong> {tarea.puntos}
+                </p>
+                <p>
+                  <strong>Publicado por:</strong> {tarea.usuarioEmail}
+                </p>
+                <button
+                  className="task-card__submit"
+                  type="button"
+                  onClick={() => aceptarTarea(tarea)}
+                >
+                  Aceptar tarea
+                </button>
+              </article>
+            ))
+          )}
         </section>
       </main>
     </div>
