@@ -50,7 +50,7 @@ function Navbar() {
 
                 <ul className="navbar__menu">
                     {[
-                        ["Inicio", "#inicio"],
+                        ["Inicio", "/"],
                         ["Nosotros", "/nosotros"],
                         ["App", "/app"],
                         ["Recompensas", "/recompensas"],
