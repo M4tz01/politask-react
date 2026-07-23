@@ -1,6 +1,6 @@
 import "./Navbar.css";
 import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 import logo from "../../assets/images/logo.png";
 import user from "../../assets/images/user.png";
@@ -65,10 +65,10 @@ function Navbar() {
                             || text === "Galeria" || text === "Recompensas"? (
 
                                 <NavLink className="navbar__link" to={href}>
-                                  {text}
-                                 </NavLink>
+                                {text}
+                                </NavLink>
 
-                       ) : (
+                    ) : (
 
                 <motion.a
                     href={href}
