@@ -10,11 +10,11 @@ import Gallery from "./components/Gallery/Gallery";
 import FAQ from "./components/FAQ/FAQ";
 import Contact from "./components/Contact/Contact";
 import Footer from "./components/Footer/Footer";
-import Chatbot from "./components/Chatbot/Chatbot";
+import Chatbot from "./components/Chatbot/Chatbot"; // Importación agregada
 
 import Register from "./pages/Register";
 import Login from "./pages/Login";
-import Dashboard from "./pages/Dashboard";
+import Dashboard from "./pages/Dashboard"; 
 
 import AboutUs from "./pages/AboutUs";
 import AppPage from "./pages/AppPage";
@@ -22,30 +22,25 @@ import Contacto from "./pages/Contacto";
 import Galeria from "./pages/Galeria";
 import Recompensas from "./pages/Recompensas";
 
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 
 import appFirebase from "./firebase";
 console.log("Firebase conectado:", appFirebase);
 
-function Home({ darkMode, setDarkMode }) {
+function Home() {
   return (
     <>
-      <Navbar
-        darkMode={darkMode}
-        setDarkMode={setDarkMode}
-      />
+      <Navbar />
+      <Hero />
+      <About />
+      <Rewards />
+      <Download />
+      <Gallery />
+      <FAQ />
+      <Contact />
+      <Footer />
 
-      <Hero darkMode={darkMode} />
-      <About darkMode={darkMode} />
-      <Rewards darkMode={darkMode} />
-      <Download darkMode={darkMode} />
-      <Gallery darkMode={darkMode} />
-      <FAQ darkMode={darkMode} />
-      <Contact darkMode={darkMode} />
-      <Footer darkMode={darkMode} />
 
-      <Chatbot />
+      <Chatbot/> 
     </>
   );
 }
@@ -61,73 +56,17 @@ function App() {
   }, [darkMode]);
 
   return (
-    <div className={darkMode ? "app dark" : "app"}>
-
-      <Routes>
-
-        <Route
-          path="/"
-          element={
-            <Home
-              darkMode={darkMode}
-              setDarkMode={setDarkMode}
-            />
-          }
-        />
-
-        <Route
-          path="/register"
-          element={<Register darkMode={darkMode} />}
-        />
-
-        <Route
-          path="/login"
-          element={<Login darkMode={darkMode} />}
-        />
-
-        <Route
-          path="/dashboard"
-          element={<Dashboard darkMode={darkMode} />}
-        />
-
-        <Route
-          path="/nosotros"
-          element={<AboutUs darkMode={darkMode} />}
-        />
-
-        <Route
-          path="/app"
-          element={<AppPage darkMode={darkMode} />}
-        />
-
-        <Route
-          path="/contacto"
-          element={<Contacto darkMode={darkMode} />}
-        />
-
-        <Route
-          path="/galeria"
-          element={<Galeria darkMode={darkMode} />}
-        />
-
-        <Route
-          path="/recompensas"
-          element={<Recompensas darkMode={darkMode} />}
-        />
-
-      </Routes>
-
-      <ToastContainer
-        position="top-right"
-        autoClose={3000}
-        hideProgressBar={false}
-        newestOnTop
-        closeOnClick
-        pauseOnHover
-        theme="colored"
-      />
-
-    </div>
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/register" element={<Register />} />
+      <Route path="/login" element={<Login />} />
+      <Route path="/dashboard" element={<Dashboard />} /> {/* 2. CREAMOS LA RUTA */}
+      <Route path="/nosotros" element={<AboutUs />} />
+      <Route path="/app" element={<AppPage />} />
+      <Route path="/contacto" element={<Contacto />} />
+      <Route path="/galeria" element={<Galeria />} />
+      <Route path="/recompensas" element={<Recompensas />} />
+    </Routes>
   );
 }
 

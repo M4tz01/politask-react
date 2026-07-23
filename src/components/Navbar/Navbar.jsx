@@ -44,30 +44,23 @@ function Navbar({ darkMode, setDarkMode }) {
       variants={menuVariants}
     >
       <nav className="navbar">
-
         {/* LOGO */}
-        <motion.div
-          className="navbar__brand"
-          variants={itemVariants}
-        >
+        <motion.div className="navbar__brand" variants={itemVariants}>
           <img
             src={logo}
             alt="logo"
             className="navbar__img"
             width="80"
           />
-
           <h1 className="navbar__logo">
             POLI
-            <span className="navbar__logo--primary">
-              -TASK
-            </span>
+            <span className="navbar__logo--primary">-TASK</span>
           </h1>
         </motion.div>
 
-        {/* BOTÓN MENÚ HAMBURGUESA (Visible en pantallas pequeñas) */}
-        <button 
-          className={`hamburger ${menuOpen ? "is-active" : ""}`} 
+        {/* BOTÓN MENÚ HAMBURGUESA */}
+        <button
+          className={`hamburger ${menuOpen ? "is-active" : ""}`}
           onClick={toggleMenu}
           aria-label="Toggle menu"
         >
@@ -86,10 +79,7 @@ function Navbar({ darkMode, setDarkMode }) {
             ["Galería", "/galeria"],
             ["Contacto", "/contacto"],
           ].map(([text, href], index) => (
-            <motion.li
-              key={index}
-              variants={itemVariants}
-            >
+            <motion.li key={index} variants={itemVariants}>
               {text === "Inicio" ? (
                 <motion.a
                   href={href}
@@ -120,10 +110,7 @@ function Navbar({ darkMode, setDarkMode }) {
         </ul>
 
         {/* BOTÓN DARK MODE + LOGIN */}
-        <motion.div
-          className="navbar__actions"
-          variants={itemVariants}
-        >
+        <motion.div className="navbar__actions" variants={itemVariants}>
           <button
             className="theme-toggle"
             onClick={() => setDarkMode(!darkMode)}
@@ -138,12 +125,7 @@ function Navbar({ darkMode, setDarkMode }) {
               className="navbar__login-link"
               onClick={closeMenu}
             >
-              <img
-                src={user}
-                alt="user"
-                width="40"
-              />
-
+              <img src={user} alt="user" width="40" />
               <motion.span
                 whileHover={{
                   scale: 1.08,
@@ -155,7 +137,6 @@ function Navbar({ darkMode, setDarkMode }) {
             </Link>
           </div>
         </motion.div>
-
       </nav>
     </motion.header>
   );

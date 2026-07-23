@@ -1,5 +1,5 @@
+
 import "./Gallery.css";
-import { motion } from "framer-motion";
 
 import gallery1 from "../../assets/images/gallery1.png";
 import gallery2 from "../../assets/images/gallery2.png";
@@ -9,41 +9,45 @@ import gallery5 from "../../assets/images/gallery5.png";
 import gallery6 from "../../assets/images/gallery6.png";
 
 function Gallery() {
-    const images = [gallery1, gallery2, gallery3, gallery4, gallery5, gallery6];
-
     return (
     <section className="gallery" id="gallery">
+
         <h2>G A L E R Í A</h2>
 
         <div className="gallery__grid">
-        {images.map((img, index) => (
-            <motion.div
-            key={index}
-            className="gallery__card"
-            initial={{
-                opacity: 0,
-                x: index % 2 === 0 ? -100 : 100,
-            }}
-            whileInView={{
-                opacity: 1,
-                x: 0,
-            }}
-            transition={{
-                duration: 0.6,
-              delay: index * 0.15,
-            }}
-            viewport={{ once: true }}
-            >
-            <img src={img} alt={`Imagen ${index + 1}`} />
-            </motion.div>
-        ))}
+
+        <div className="gallery__card">
+            <img src={gallery1} alt="Imagen 1" />
         </div>
 
-        <p className="gallery__text">
+        <div className="gallery__card">
+            <img src={gallery2} alt="Imagen 2" />
+        </div>
+
+        <div className="gallery__card">
+            <img src={gallery3} alt="Imagen 3" />
+        </div>
+
+        <div className="gallery__card">
+            <img src={gallery4} alt="Imagen 4" />
+        </div>
+
+        <div className="gallery__card">
+            <img src={gallery5} alt="Imagen 5" />
+        </div>
+
+        <div className="gallery__card">
+            <img src={gallery6} alt="Imagen 6" />
+        </div>
+
+        </div>
+
+    <p className="gallery__text">
         ¡Conectando estudiantes y transformando ayuda en oportunidades!
         </p>
+
     </section>
-    );
+);
 }
 
 export default Gallery;
