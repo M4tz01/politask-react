@@ -1,6 +1,5 @@
 
 import "./Gallery.css";
-import { motion } from "framer-motion";
 
 import gallery1 from "../../assets/images/gallery1.png";
 import gallery2 from "../../assets/images/gallery2.png";
