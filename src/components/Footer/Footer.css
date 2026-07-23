@@ -1,0 +1,12 @@
+.footer__icons a {
+  display: inline-block;
+  transition: transform 0.2s ease;
+}
+
+.footer__icons a:hover {
+  transform: scale(1.1); /* Efecto zoom al pasar el mouse */
+}
+
+.footer__icons img {
+  cursor: pointer;
+}
