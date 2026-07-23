@@ -392,3 +392,87 @@
     width: 100%;
   }
 }
+/* ===================== */
+/*      DARK MODE        */
+/* ===================== */
+
+.app.dark .dashboard{
+    background:#121212;
+    color:#f5f5f5;
+}
+
+.app.dark .dashboard__header{
+    background:#181818;
+    border-bottom:1px solid #333;
+}
+
+.app.dark .dashboard__user,
+.app.dark .dashboard__eyebrow,
+.app.dark .dashboard__header h1{
+    color:#ffffff;
+}
+
+.app.dark .dashboard__panel{
+    background:#1f1f1f;
+    border:1px solid #444;
+    box-shadow:none;
+}
+
+.app.dark .dashboard__section-heading h2,
+.app.dark .dashboard__section-heading p,
+.app.dark .task-form label{
+    color:#ffffff;
+}
+
+.app.dark .task-form input,
+.app.dark .task-form select,
+.app.dark .task-form textarea{
+    background:#2b2b2b;
+    color:#ffffff;
+    border:1px solid #555;
+}
+
+.app.dark .task-form input::placeholder,
+.app.dark .task-form textarea::placeholder{
+    color:#bdbdbd;
+}
+
+.app.dark .task-card{
+    background:#2b2b2b;
+    border:1px solid #444;
+}
+
+.app.dark .task-card h3,
+.app.dark .task-card p,
+.app.dark .task-card strong{
+    color:#ffffff;
+}
+
+.app.dark .task-card__footer{
+    border-top:1px solid #444;
+}
+
+.app.dark .dashboard__empty{
+    border:2px dashed #555;
+    color:#ffffff;
+}
+
+.app.dark .dashboard__message{
+    background:#1b4332;
+    color:#d8f3dc;
+}
+
+.app.dark .dashboard__message--error{
+    background:#5c1d1d;
+    color:#ffffff;
+}
+
+.app.dark .task-form__cancel{
+    background:#444;
+    color:#ffffff;
+}
+
+.app.dark .dashboard__counter{
+    background:#333;
+    color:#ffffff;
+}

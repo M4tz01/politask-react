@@ -2,16 +2,27 @@ rules_version = '2';
 
 service cloud.firestore {
   match /databases/{database}/documents {
+
     match /tareas/{tareaId} {
+
+      // Crear tareas propias
       allow create: if request.auth != null
                     && request.resource.data.usuarioId == request.auth.uid;
 
-      allow read, delete: if request.auth != null
-                          && resource.data.usuarioId == request.auth.uid;
 
+      // Todos los estudiantes autenticados pueden ver tareas
+      allow read: if request.auth != null;
+
+
+      // Solo el dueño puede eliminar
+      allow delete: if request.auth != null
+                    && resource.data.usuarioId == request.auth.uid;
+
+
+      // Solo el dueño puede actualizar sus tareas
       allow update: if request.auth != null
-                    && resource.data.usuarioId == request.auth.uid
-                    && request.resource.data.usuarioId == request.auth.uid;
+                    && resource.data.usuarioId == request.auth.uid;
+
     }
   }
 }
