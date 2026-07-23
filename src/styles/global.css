@@ -692,160 +692,160 @@ text-align: center;
 
 /* La tarjeta blanca del Formulario */
 .formulario {
-  background-color: #ffffff;
-  padding: 35px 30px;
-  border-radius: 12px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
-  width: 100%;
-  max-width: 420px;
-  border: 1px solid #e2e8f0;
+background-color: #ffffff;
+padding: 35px 30px;
+border-radius: 12px;
+box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+width: 100%;
+max-width: 420px;
+border: 1px solid #e2e8f0;
 }
 
 /* El cuadro de "Ingresa tus datos" en el Registro */
 .formulario fieldset {
-  border: none;
-  padding: 0;
-  margin: 0;
+border: none;
+padding: 0;
+margin: 0;
 }
 
 .formulario legend {
-  font-size: 1rem;
-  color: #64748b;
-  margin-bottom: 20px;
-  font-weight: 500;
-  text-align: center;
+font-size: 1rem;
+color: #64748b;
+margin-bottom: 20px;
+font-weight: 500;
+text-align: center;
 }
 
 /* Estructura de cada campo de entrada (Label + Input) */
 .campo {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  margin-bottom: 20px;
-  width: 100%;
+display: flex;
+flex-direction: column;
+gap: 8px;
+margin-bottom: 20px;
+width: 100%;
 }
 
 .campo label {
-  font-weight: 600;
-  color: #334155;
-  font-size: 0.9rem;
-  text-align: left;
+font-weight: 600;
+color: #334155;
+font-size: 0.9rem;
+text-align: left;
 }
 
 .campo input {
-  padding: 12px 14px;
-  border: 1.5px solid #cbd5e1;
-  border-radius: 8px;
-  font-size: 0.95rem;
-  transition: all 0.2s ease-in-out;
-  outline: none;
-  width: 100%;
+padding: 12px 14px;
+border: 1.5px solid #cbd5e1;
+border-radius: 8px;
+font-size: 0.95rem;
+transition: all 0.2s ease-in-out;
+outline: none;
+width: 100%;
 }
 
 /* Efecto focus al escribir en el input */
 .campo input:focus {
-  border-color: #3b82f6;
-  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+border-color: #3b82f6;
+box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
 }
 
 /* Estilo para los mensajes de error de validación */
 .errors {
   color: #dc2626; /* Rojo de alerta */
-  font-size: 0.8rem;
-  font-weight: 500;
-  margin-top: 4px;
-  text-align: left;
+font-size: 0.8rem;
+font-weight: 500;
+margin-top: 4px;
+text-align: left;
 }
 
 /* Botón de Enviar / Iniciar Sesión */
 .btn {
-  width: 100%;
-  padding: 12px;
+width: 100%;
+padding: 12px;
   background-color: #3b82f6; /* Azul brillante similar al de la Landing */
-  color: #ffffff;
-  border: none;
-  border-radius: 8px;
-  font-size: 1rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background-color 0.2s ease;
-  text-align: center;
-  margin-top: 10px;
+color: #ffffff;
+border: none;
+border-radius: 8px;
+font-size: 1rem;
+font-weight: 600;
+cursor: pointer;
+transition: background-color 0.2s ease;
+text-align: center;
+margin-top: 10px;
 }
 
 .btn:hover {
-  background-color: #2563eb;
+background-color: #2563eb;
 }
 
 /* Enlaces inferiores (¿No tienes cuenta? Regístrate) */
 main.contenido-principal a,
 main.contenido-principal .enlace {
-  margin-top: 15px;
-  color: #3b82f6;
-  text-decoration: none;
-  font-size: 0.9rem;
-  font-weight: 500;
-  transition: color 0.2s;
+margin-top: 15px;
+color: #3b82f6;
+text-decoration: none;
+font-size: 0.9rem;
+font-weight: 500;
+transition: color 0.2s;
 }
 
 main.contenido-principal a:hover,
 main.contenido-principal .enlace:hover {
-  color: #1d4ed8;
-  text-decoration: underline;
+color: #1d4ed8;
+text-decoration: underline;
 }
 
 .login-divider {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  margin: 1.5rem 0;
-  color: #64748b;
+display: flex;
+align-items: center;
+gap: 1rem;
+margin: 1.5rem 0;
+color: #64748b;
 }
 
 .login-divider::before,
 .login-divider::after {
-  content: "";
-  flex: 1;
-  height: 1px;
-  background-color: #cbd5e1;
+content: "";
+flex: 1;
+height: 1px;
+background-color: #cbd5e1;
 }
 
 .login-divider span {
-  white-space: nowrap;
+white-space: nowrap;
 }
 
 .btn-google {
-  width: 100%;
-  padding: 0.9rem 1rem;
-  border: 1px solid #cbd5e1;
-  border-radius: 8px;
-  background-color: #ffffff;
-  color: #1e293b;
-  font-size: 1rem;
-  font-weight: 600;
-  cursor: pointer;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 0.75rem;
-  transition:
+width: 100%;
+padding: 0.9rem 1rem;
+border: 1px solid #cbd5e1;
+border-radius: 8px;
+background-color: #ffffff;
+color: #1e293b;
+font-size: 1rem;
+font-weight: 600;
+cursor: pointer;
+display: flex;
+justify-content: center;
+align-items: center;
+gap: 0.75rem;
+transition:
     transform 0.2s ease,
     box-shadow 0.2s ease;
 }
 
 .btn-google:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 5px 15px
+transform: translateY(-2px);
+box-shadow: 0 5px 15px
     rgba(0, 0, 0, 0.12);
 }
 
 .google-icon {
-  width: 28px;
-  height: 28px;
-  border-radius: 50%;
-  display: grid;
-  place-items: center;
-  color: #ffffff;
-  background-color: #4285f4;
-  font-weight: 700;
+width: 28px;
+height: 28px;
+border-radius: 50%;
+display: grid;
+place-items: center;
+color: #ffffff;
+background-color: #4285f4;
+font-weight: 700;
 }
