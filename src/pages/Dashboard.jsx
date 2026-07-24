@@ -76,26 +76,21 @@ function Dashboard() {
     }
   };
 
-  const obtenerTareasDisponibles = async (uid) => {
-    try {
-      // Pedimos explícitamente a Firestore las tareas de OTROS usuarios
-      const consultaComunidad = query(
-        collection(dbFirebase, "tareas"),
-        where("usuarioId", "!=", uid)
-      );
+const obtenerTareasDisponibles = async (uid) => {
+  try {
+    const consultaComunidad = query(collection(dbFirebase, "tareas"));
+    const snapshot = await getDocs(consultaComunidad);
 
-      const snapshot = await getDocs(consultaComunidad);
+    const documentos = snapshot.docs
+      .map((doc) => ({ id: doc.id, ...doc.data() }))
+      .filter((tarea) => tarea.usuarioId !== uid);
 
-      const documentos = snapshot.docs.map((doc) => ({
-        id: doc.id,
-        ...doc.data(),
-      }));
-
-      setTareasDisponibles(documentos);
-    } catch (error) {
-      console.error("Error al obtener tareas disponibles:", error);
-    }
-  };
+    setTareasDisponibles(documentos);
+  } catch (error) {
+    console.error("Error al obtener tareas disponibles:", error);
+    setErrorGeneral("No se pudieron cargar las tareas de la comunidad.");
+  }
+};
 
   useEffect(() => {
     const cancelarObservador = onAuthStateChanged(authFirebase, (user) => {

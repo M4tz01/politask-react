@@ -58,6 +58,7 @@
   padding: 4rem 0 6rem;
   display: grid;
   grid-template-columns: minmax(30rem, 0.82fr) minmax(40rem, 1.35fr);
+  grid-template-rows: auto auto;
   gap: 3rem;
   align-items: start;
 }
@@ -71,8 +72,20 @@
 }
 
 .dashboard__form-panel {
+  grid-column: 1;
+  grid-row: 1 / -1;
   position: sticky;
   top: 2rem;
+}
+
+.dashboard__list-panel {
+  grid-column: 2;
+  grid-row: 1;
+}
+
+.dashboard__list-panel + .dashboard__panel {
+  grid-column: 2;
+  grid-row: 2;
 }
 
 .dashboard__section-heading {
