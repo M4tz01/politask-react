@@ -1,16 +1,33 @@
-# React + Vite
+# PoliTask 🎓
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+PoliTask es una plataforma web de tutorías para estudiantes, diseñada para facilitar el intercambio de conocimientos dentro de la comunidad universitaria.
 
-Currently, two official plugins are available:
+La aplicación permite a los estudiantes solicitar y ofrecer tutorías en diferentes áreas académicas. Los tutores pueden obtener puntos por ayudar a otros estudiantes para después canjearlos por recompensas.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Características principales
 
-## React Compiler
+- Registro e inicio de sesión de usuarios.
+- Creación y gestión de solicitudes de tutorías.
+- Interacción entre estudiantes y tutores.
+- Sistema de puntos y recompensas.
+- Formulario de contacto.
+- Diseño responsive para dispositivos móviles y computadoras.
+- Aplicación web progresiva (PWA), instalable en dispositivos compatibles.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Tecnologías utilizadas
 
-## Expanding the ESLint configuration
+- React
+- Vite
+- JavaScript
+- Firebase Authentication
+- Firebase Firestore
+- React Router
+- React Toastify
+- CSS
+- Vite PWA
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Objetivo
+
+El objetivo de PoliTask es crear un espacio colaborativo donde los estudiantes puedan compartir sus conocimientos, recibir ayuda académica y ser recompensados por contribuir al aprendizaje de otros.
+
+## Despliege
