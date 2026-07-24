@@ -5,33 +5,50 @@ import instagram from "../../assets/images/ig.png";
 import x from "../../assets/images/x.png";
 
 function Footer() {
-    return (
+  return (
     <footer className="footer">
 
-        <div className="footer__social">
-
+      <div className="footer__social">
         <h3>Redes</h3>
 
         <div className="footer__icons">
+          <a 
+            href="https://facebook.com" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            aria-label="Facebook"
+          >
             <img src={facebook} alt="Facebook" />
+          </a>
+
+          <a 
+            href="https://instagram.com" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            aria-label="Instagram"
+          >
             <img src={instagram} alt="Instagram" />
+          </a>
+
+          <a 
+            href="https://x.com" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            aria-label="X"
+          >
             <img src={x} alt="X" />
+          </a>
         </div>
+      </div>
 
-        </div>
-
-        <div className="footer__contact">
-
+      <div className="footer__contact">
         <h3>Contáctanos</h3>
-
         <p>+593 99 461 6687</p>
-
         <p>politask@gmail.com</p>
-
-        </div>
+      </div>
 
     </footer>
-    );
+  );
 }
 
 export default Footer;
