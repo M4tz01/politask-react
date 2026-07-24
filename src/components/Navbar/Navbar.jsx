@@ -69,41 +69,28 @@ function Navbar({ darkMode, setDarkMode }) {
                     ].map(([text, href], index) => (
                         <motion.li key={index} variants={itemVariants}>
 
-                                
-
-                            {text === "Nosotros" || text === "App" || text === "Contacto"
-                            || text === "Galeria" || text === "Recompensas"? (
-
-                                <NavLink className="navbar__link" to={href}>
-                                {text}
-                                </NavLink>
-
-                    ) : (
-
-                <motion.a
-                  href={href}
-                  onClick={closeMenu}
-                  whileHover={{
-                    y: -4,
-                    scale: 1.05,
-                    color: "#3f2beb",
-                  }}
-                  transition={{
-                    type: "spring",
-                    stiffness: 300,
-                  }}
-                >
-                  {text}
-                </motion.a>
-              ) : (
-                <NavLink
-                  className="navbar__link"
-                  to={href}
-                  onClick={closeMenu}
-                >
-                  {text}
-                </NavLink>
-              )}
+                {text === "Nosotros" || text === "App" || text === "Contacto"
+            || text === "Galeria" || text === "Recompensas" ? (
+              <NavLink className="navbar__link" to={href} onClick={closeMenu}>
+                {text}
+              </NavLink>
+            ) : (
+              <motion.a
+                href={href}
+                onClick={closeMenu}
+                whileHover={{
+                  y: -4,
+                  scale: 1.05,
+                  color: "#3f2beb",
+                }}
+                transition={{
+                  type: "spring",
+                  stiffness: 300,
+                }}
+              >
+                {text}
+              </motion.a>
+            )}
             </motion.li>
           ))}
         </ul>

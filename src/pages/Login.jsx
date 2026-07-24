@@ -2,6 +2,7 @@ import {
   authFirebase,
   googleProvider,
 } from "../firebase";
+import { asegurarUsuarioEnFirestore } from "../utils/usuarios";
 import { 
   signInWithEmailAndPassword,
   signInWithPopup
@@ -55,7 +56,8 @@ function Login() {
 
   const iniciarSesionConGoogle = async () => {
     try {
-      await signInWithPopup(authFirebase, googleProvider);
+      const resultado = await signInWithPopup(authFirebase, googleProvider);
+      await asegurarUsuarioEnFirestore(resultado.user);
       toast.success("Bienvenido a PoliTask");
       navigate("/dashboard", { replace: true });
     } catch (error) {

@@ -3,12 +3,13 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { onAuthStateChanged, signOut } from "firebase/auth";
 import {
-  addDoc,
   collection,
   deleteDoc,
   doc,
+  getDoc,
   getDocs,
   query,
+  runTransaction,
   serverTimestamp,
   updateDoc,
   where,
@@ -30,6 +31,7 @@ function Dashboard() {
   const [usuario, setUsuario] = useState(null);
   const [tareas, setTareas] = useState([]);
   const [tareasDisponibles, setTareasDisponibles] = useState([]);
+  const [puntosUsuario, setPuntosUsuario] = useState(0);
   const [idEdicion, setIdEdicion] = useState("");
   const [cargando, setCargando] = useState(true);
   const [guardando, setGuardando] = useState(false);
@@ -76,21 +78,34 @@ function Dashboard() {
     }
   };
 
-const obtenerTareasDisponibles = async (uid) => {
-  try {
-    const consultaComunidad = query(collection(dbFirebase, "tareas"));
-    const snapshot = await getDocs(consultaComunidad);
+  const obtenerTareasDisponibles = async (uid) => {
+    try {
+      const consultaComunidad = query(collection(dbFirebase, "tareas"));
+      const snapshot = await getDocs(consultaComunidad);
 
-    const documentos = snapshot.docs
-      .map((doc) => ({ id: doc.id, ...doc.data() }))
-      .filter((tarea) => tarea.usuarioId !== uid);
+      const documentos = snapshot.docs
+        .map((doc) => ({ id: doc.id, ...doc.data() }))
+        .filter(
+          (tarea) => tarea.usuarioId !== uid && tarea.estado === "Pendiente"
+        );
 
-    setTareasDisponibles(documentos);
-  } catch (error) {
-    console.error("Error al obtener tareas disponibles:", error);
-    setErrorGeneral("No se pudieron cargar las tareas de la comunidad.");
-  }
-};
+      setTareasDisponibles(documentos);
+    } catch (error) {
+      console.error("Error al obtener tareas disponibles:", error);
+      setErrorGeneral("No se pudieron cargar las tareas de la comunidad.");
+    }
+  };
+
+  const obtenerPuntos = async (uid) => {
+    try {
+      const snap = await getDoc(doc(dbFirebase, "usuarios", uid));
+      if (snap.exists()) {
+        setPuntosUsuario(snap.data().puntos ?? 0);
+      }
+    } catch (error) {
+      console.error("Error al obtener puntos:", error);
+    }
+  };
 
   useEffect(() => {
     const cancelarObservador = onAuthStateChanged(authFirebase, (user) => {
@@ -102,6 +117,7 @@ const obtenerTareasDisponibles = async (uid) => {
       setUsuario(user);
       obtenerTareas(user.uid);
       obtenerTareasDisponibles(user.uid);
+      obtenerPuntos(user.uid);
     });
 
     return cancelarObservador;
@@ -120,31 +136,64 @@ const obtenerTareasDisponibles = async (uid) => {
       setMensaje("");
       setErrorGeneral("");
 
-      const datosTarea = {
-        titulo: data.titulo.trim(),
-        categoria: data.categoria,
-        puntos: Number(data.puntos),
-        estado: data.estado,
-        descripcion: data.descripcion.trim(),
-        actualizadoEn: serverTimestamp(),
-      };
+      const puntosTarea = Number(data.puntos);
 
       if (idEdicion) {
+        const datosTarea = {
+          titulo: data.titulo.trim(),
+          categoria: data.categoria,
+          puntos: puntosTarea,
+          estado: data.estado,
+          descripcion: data.descripcion.trim(),
+          actualizadoEn: serverTimestamp(),
+        };
+
         await updateDoc(doc(dbFirebase, "tareas", idEdicion), datosTarea);
         setMensaje("Tarea actualizada correctamente.");
       } else {
-        await addDoc(collection(dbFirebase, "tareas"), {
-          ...datosTarea,
-          usuarioId: usuario.uid,
-          usuarioEmail: usuario.email ?? "",
-          creadoEn: serverTimestamp(),
+        if (puntosTarea > puntosUsuario) {
+          setErrorGeneral(
+            `No tienes suficientes puntos. Necesitas ${puntosTarea} y tienes ${puntosUsuario}.`
+          );
+          setGuardando(false);
+          return;
+        }
+
+        const nuevaTareaRef = doc(collection(dbFirebase, "tareas"));
+        const usuarioRef = doc(dbFirebase, "usuarios", usuario.uid);
+
+        await runTransaction(dbFirebase, async (transaction) => {
+          const usuarioSnap = await transaction.get(usuarioRef);
+          const puntosActuales = usuarioSnap.data()?.puntos ?? 0;
+
+          if (puntosActuales < puntosTarea) {
+            throw new Error("Puntos insuficientes.");
+          }
+
+          transaction.update(usuarioRef, {
+            puntos: puntosActuales - puntosTarea,
+          });
+
+          transaction.set(nuevaTareaRef, {
+            titulo: data.titulo.trim(),
+            categoria: data.categoria,
+            puntos: puntosTarea,
+            estado: data.estado,
+            descripcion: data.descripcion.trim(),
+            usuarioId: usuario.uid,
+            usuarioEmail: usuario.email ?? "",
+            creadoEn: serverTimestamp(),
+            actualizadoEn: serverTimestamp(),
+          });
         });
+
         setMensaje("Tarea registrada correctamente.");
       }
 
       limpiarFormulario();
       await obtenerTareas(usuario.uid);
       await obtenerTareasDisponibles(usuario.uid);
+      await obtenerPuntos(usuario.uid);
     } catch (error) {
       console.error(error);
       setErrorGeneral("No se pudo guardar la tarea. Inténtalo nuevamente.");
@@ -170,35 +219,114 @@ const obtenerTareasDisponibles = async (uid) => {
   };
 
   const aceptarTarea = async (tarea) => {
-    console.log("Tarea aceptada:", tarea);
+    if (!usuario) return;
+
+    try {
+      setMensaje("");
+      setErrorGeneral("");
+
+      await updateDoc(doc(dbFirebase, "tareas", tarea.id), {
+        estado: "En progreso",
+        aceptadoPor: usuario.uid,
+        aceptadoPorEmail: usuario.email ?? "",
+        fechaAceptada: serverTimestamp(),
+      });
+
+      setMensaje("Tarea aceptada. Ahora aparece como 'En progreso'.");
+      await obtenerTareasDisponibles(usuario.uid);
+    } catch (error) {
+      console.error(error);
+      setErrorGeneral("No se pudo aceptar la tarea.");
+    }
   };
 
-  const eliminarTarea = async (id) => {
+  const confirmarTarea = async (tarea) => {
     if (!usuario) return;
 
     const confirmado = window.confirm(
-      "Vas a eliminar esta tarea. ¿Estás seguro?"
+      "¿Confirmas que esta tarea fue completada? Se transferirán los puntos."
     );
-
     if (!confirmado) return;
 
     try {
       setMensaje("");
       setErrorGeneral("");
 
-      await deleteDoc(doc(dbFirebase, "tareas", id));
+      const tareaRef = doc(dbFirebase, "tareas", tarea.id);
+      const aceptadorRef = doc(dbFirebase, "usuarios", tarea.aceptadoPor);
 
-      if (idEdicion === id) {
-        limpiarFormulario();
-      }
+      await runTransaction(dbFirebase, async (transaction) => {
+        const aceptadorSnap = await transaction.get(aceptadorRef);
+        const puntosActuales = aceptadorSnap.data()?.puntos ?? 0;
 
-      setMensaje("Tarea eliminada correctamente.");
+        transaction.update(aceptadorRef, {
+          puntos: puntosActuales + tarea.puntos,
+        });
+
+        transaction.update(tareaRef, {
+          estado: "Completada",
+          fechaCompletada: serverTimestamp(),
+        });
+      });
+
+      setMensaje("Tarea confirmada. Puntos transferidos.");
       await obtenerTareas(usuario.uid);
     } catch (error) {
       console.error(error);
-      setErrorGeneral("No se pudo eliminar la tarea.");
+      setErrorGeneral("No se pudo confirmar la tarea.");
     }
   };
+
+  const eliminarTarea = async (tarea) => {
+  if (!usuario) return;
+
+  const confirmado = window.confirm(
+    tarea.estado === "Pendiente"
+      ? "Vas a eliminar esta tarea. Se te devolverán los puntos. ¿Estás seguro?"
+      : "Vas a eliminar esta tarea. ¿Estás seguro?"
+  );
+
+  if (!confirmado) return;
+
+  try {
+    setMensaje("");
+    setErrorGeneral("");
+
+    const tareaRef = doc(dbFirebase, "tareas", tarea.id);
+
+    if (tarea.estado === "Pendiente") {
+      const usuarioRef = doc(dbFirebase, "usuarios", usuario.uid);
+
+      await runTransaction(dbFirebase, async (transaction) => {
+        const usuarioSnap = await transaction.get(usuarioRef);
+        const puntosActuales = usuarioSnap.data()?.puntos ?? 0;
+
+        transaction.update(usuarioRef, {
+          puntos: puntosActuales + tarea.puntos,
+        });
+
+        transaction.delete(tareaRef);
+      });
+    } else {
+      await deleteDoc(tareaRef);
+    }
+
+    if (idEdicion === tarea.id) {
+      limpiarFormulario();
+    }
+
+    setMensaje(
+      tarea.estado === "Pendiente"
+        ? "Tarea eliminada y puntos devueltos."
+        : "Tarea eliminada correctamente."
+    );
+    await obtenerTareas(usuario.uid);
+    await obtenerPuntos(usuario.uid);
+  } catch (error) {
+    console.error(error);
+    setErrorGeneral("No se pudo eliminar la tarea.");
+  }
+};
 
   const cerrarSesion = async () => {
     try {
@@ -218,6 +346,9 @@ const obtenerTareasDisponibles = async (uid) => {
           <h1>PoliTask</h1>
           <p className="dashboard__user">
             Sesión iniciada como <strong>{usuario?.email ?? "usuario"}</strong>
+          </p>
+          <p className="dashboard__user">
+            Puntos disponibles: <strong>{puntosUsuario}</strong>
           </p>
         </div>
 
@@ -412,9 +543,24 @@ const obtenerTareasDisponibles = async (uid) => {
                   <h3>{tarea.titulo}</h3>
                   <p>{tarea.descripcion}</p>
 
+                  {tarea.estado === "En progreso" && tarea.aceptadoPorEmail && (
+                    <p>
+                      <strong>Aceptada por:</strong> {tarea.aceptadoPorEmail}
+                    </p>
+                  )}
+
                   <div className="task-card__footer">
                     <strong>{tarea.puntos} puntos</strong>
                     <div className="task-card__actions">
+                      {tarea.estado === "En progreso" && (
+                        <button
+                          className="task-card__edit"
+                          type="button"
+                          onClick={() => confirmarTarea(tarea)}
+                        >
+                          Confirmar completada
+                        </button>
+                      )}
                       <button
                         className="task-card__edit"
                         type="button"
@@ -425,7 +571,7 @@ const obtenerTareasDisponibles = async (uid) => {
                       <button
                         className="task-card__delete"
                         type="button"
-                        onClick={() => eliminarTarea(tarea.id)}
+                        onClick={() => eliminarTarea(tarea)}
                       >
                         Eliminar
                       </button>
