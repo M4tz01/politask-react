@@ -10,7 +10,7 @@ import Gallery from "./components/Gallery/Gallery";
 import FAQ from "./components/FAQ/FAQ";
 import Contact from "./components/Contact/Contact";
 import Footer from "./components/Footer/Footer";
-import Chatbot from "./components/Chatbot/Chatbot"; // Importación agregada
+import Chatbot from "./components/Chatbot/Chatbot";
 
 import Register from "./pages/Register";
 import Login from "./pages/Login";
@@ -22,14 +22,13 @@ import Contacto from "./pages/Contacto";
 import Galeria from "./pages/Galeria";
 import Recompensas from "./pages/Recompensas";
 
-
 import appFirebase from "./firebase";
 console.log("Firebase conectado:", appFirebase);
 
-function Home() {
+function Home({ darkMode, setDarkMode }) {
   return (
     <>
-      <Navbar />
+      <Navbar darkMode={darkMode} setDarkMode={setDarkMode} />
       <Hero />
       <About />
       <Rewards />
@@ -38,15 +37,12 @@ function Home() {
       <FAQ />
       <Contact />
       <Footer />
-
-
-      <Chatbot/> 
+      <Chatbot /> 
     </>
   );
 }
 
 function App() {
-
   const [darkMode, setDarkMode] = useState(() => {
     return localStorage.getItem("theme") === "dark";
   });
@@ -56,17 +52,20 @@ function App() {
   }, [darkMode]);
 
   return (
-    <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/register" element={<Register />} />
-      <Route path="/login" element={<Login />} />
-      <Route path="/dashboard" element={<Dashboard />} /> {/* 2. CREAMOS LA RUTA */}
-      <Route path="/nosotros" element={<AboutUs />} />
-      <Route path="/app" element={<AppPage />} />
-      <Route path="/contacto" element={<Contacto />} />
-      <Route path="/galeria" element={<Galeria />} />
-      <Route path="/recompensas" element={<Recompensas />} />
-    </Routes>
+    /* Envolvemos TODO dentro de un div con la clase .app y condicionalmente .dark */
+    <div className={`app ${darkMode ? "dark" : ""}`}>
+      <Routes>
+        <Route path="/" element={<Home darkMode={darkMode} setDarkMode={setDarkMode} />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/nosotros" element={<AboutUs />} />
+        <Route path="/app" element={<AppPage />} />
+        <Route path="/contacto" element={<Contacto />} />
+        <Route path="/galeria" element={<Galeria />} />
+        <Route path="/recompensas" element={<Recompensas />} />
+      </Routes>
+    </div>
   );
 }
 
