@@ -18,6 +18,9 @@ import {
 import { authFirebase, dbFirebase } from "../firebase";
 import "./Dashboard.css";
 
+import { toast } from "react-toastify";
+
+
 const FORM_DEFAULTS = {
   titulo: "",
   categoria: "",
@@ -191,8 +194,7 @@ function Dashboard() {
           });
         });
 
-        setMensaje("Tarea registrada correctamente.");
-      }
+      toast.success("Tarea registrada correctamente.");      }
 
       limpiarFormulario();
       await obtenerTareas(usuario.uid);
@@ -200,7 +202,7 @@ function Dashboard() {
       await obtenerPuntos(usuario.uid);
     } catch (error) {
       console.error(error);
-      setErrorGeneral("No se pudo guardar la tarea. Inténtalo nuevamente.");
+      toast.error("No se pudo guardar la tarea. Inténtalo nuevamente.");
     } finally {
       setGuardando(false);
     }
@@ -236,11 +238,11 @@ function Dashboard() {
         fechaAceptada: serverTimestamp(),
       });
 
-      setMensaje("Tarea aceptada. Ahora aparece como 'En progreso'.");
+      toast.success("Tarea aceptada. Ahora aparece como 'En progreso'.");
       await obtenerTareasDisponibles(usuario.uid);
     } catch (error) {
       console.error(error);
-      setErrorGeneral("No se pudo aceptar la tarea.");
+      toast.error("No se pudo aceptar la tarea.");
     }
   };
 
@@ -273,11 +275,11 @@ function Dashboard() {
         });
       });
 
-      setMensaje("Tarea confirmada. Puntos transferidos.");
+      toast.success("Tarea confirmada. Puntos transferidos.");
       await obtenerTareas(usuario.uid);
     } catch (error) {
       console.error(error);
-      setErrorGeneral("No se pudo confirmar la tarea.");
+      toast.error("No se pudo confirmar la tarea.");
     }
   };
 
@@ -338,7 +340,7 @@ function Dashboard() {
       navigate("/login", { replace: true });
     } catch (error) {
       console.error(error);
-      setErrorGeneral("No se pudo cerrar la sesión.");
+      toast.error("No se pudo cerrar la sesión.");
     }
   };
 

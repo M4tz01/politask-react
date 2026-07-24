@@ -10,6 +10,10 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { authFirebase, googleProvider } from "../firebase";
 import { asegurarUsuarioEnFirestore } from "../utils/usuarios";
 
+
+import { toast } from "react-toastify";
+
+
 const Register = () => {
   const navigate = useNavigate();
 
