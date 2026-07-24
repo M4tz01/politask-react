@@ -25,10 +25,11 @@
 
 .chatbot-window {
   position: absolute;
-  bottom: 60px;
+  bottom: 70px;
   right: 0;
-  width: 340px;
-  height: 480px;
+  width: 400px;
+  height: 620px;
+  max-height: calc(100vh - 120px);
   background-color: #ffffff;
   border-radius: 12px;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
@@ -37,7 +38,6 @@
   overflow: hidden;
   border: 1px solid #e2e8f0;
 }
-
 .chatbot-header {
   background-color: #1e293b;
   color: white;
@@ -49,15 +49,20 @@
   font-size: 1.1rem;
 }
 
-.chatbot-header p {
-  margin: 2px 0 0;
-  font-size: 0.75rem;
-  opacity: 0.8;
+.chatbot-header {
+  background-color: #1e293b;
+  color: white;
+  padding: 16px 20px;
+}
+
+.chatbot-header h3 {
+  margin: 0;
+  font-size: 2rem;
 }
 
 .chatbot-messages {
   flex: 1;
-  padding: 12px;
+  padding: 14px;
   overflow-y: auto;
   display: flex;
   flex-direction: column;
@@ -78,11 +83,11 @@
 }
 
 .message-bubble {
-  max-width: 80%;
-  padding: 8px 12px;
+  max-width: 85%;
+  padding: 10px 14px;
   border-radius: 12px;
-  font-size: 0.875rem;
-  line-height: 1.4;
+  font-size: 1.7rem;
+  line-height: 1.5;
 }
 
 .chat-message.user .message-bubble {
@@ -115,14 +120,14 @@
 
 .chatbot-faqs p {
   margin: 0 0 6px 0;
-  font-size: 0.75rem;
+  font-size: 1.6rem;
   color: #64748b;
 }
 
 .faq-buttons {
   display: flex;
   flex-wrap: wrap;
-  gap: 4px;
+  gap: 6px;
   max-height: 70px;
   overflow-y: auto;
 }
@@ -132,7 +137,7 @@
   border: 1px solid #cbd5e1;
   border-radius: 12px;
   padding: 4px 8px;
-  font-size: 0.7rem;
+  font-size: 1.7rem;
   cursor: pointer;
   white-space: nowrap;
   transition: background-color 0.2s;
@@ -154,7 +159,7 @@
   border: 1px solid #cbd5e1;
   border-radius: 6px;
   padding: 8px;
-  font-size: 0.85rem;
+  font-size: 2rem;
   outline: none;
 }
 
@@ -166,5 +171,18 @@
   padding: 8px 12px;
   margin-left: 6px;
   cursor: pointer;
-  font-size: 0.85rem;
+  font-size: 2rem;
+}
+
+@media (max-width: 480px) {
+  .chatbot-window {
+    width: calc(100vw - 32px);
+    height: calc(100vh - 140px);
+    right: -9px;
+  }
+
+  .chatbot-wrapper {
+    bottom: 16px;
+    right: 16px;
+  }
 }

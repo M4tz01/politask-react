@@ -42,8 +42,12 @@ function Dashboard() {
     register,
     handleSubmit,
     reset,
+    watch,
     formState: { errors },
   } = useForm({ defaultValues: FORM_DEFAULTS });
+
+  const tituloActual = watch("titulo") ?? "";
+  const descripcionActual = watch("descripcion") ?? "";
 
   const obtenerTareas = async (uid) => {
     try {
@@ -375,16 +379,26 @@ function Dashboard() {
             noValidate
           >
             <div className="task-form__group task-form__group--full">
-              <label htmlFor="titulo">Título</label>
+              <div className="task-form__label-row">
+                <label htmlFor="titulo">Título</label>
+                <span className="task-form__counter">
+                  {tituloActual.length}/35
+                </span>
+              </div>
               <input
                 id="titulo"
                 type="text"
+                maxLength={35}
                 placeholder="Ej.: Entregar deber de programación"
                 {...register("titulo", {
                   required: "El título es obligatorio.",
                   minLength: {
                     value: 3,
                     message: "El título debe tener al menos 3 caracteres.",
+                  },
+                  maxLength: {
+                    value: 35,
+                    message: "El título no puede superar los 80 caracteres.",
                   },
                 })}
               />
@@ -450,10 +464,16 @@ function Dashboard() {
             </div>
 
             <div className="task-form__group task-form__group--full">
-              <label htmlFor="descripcion">Descripción</label>
+              <div className="task-form__label-row">
+                <label htmlFor="descripcion">Descripción</label>
+                <span className="task-form__counter">
+                  {descripcionActual.length}/80
+                </span>
+              </div>
               <textarea
                 id="descripcion"
                 rows="5"
+                maxLength={80}
                 placeholder="Describe en qué consiste la tarea..."
                 {...register("descripcion", {
                   required: "La descripción es obligatoria.",
@@ -461,6 +481,10 @@ function Dashboard() {
                     value: 10,
                     message:
                       "La descripción debe tener al menos 10 caracteres.",
+                  },
+                  maxLength: {
+                    value: 80,
+                    message: "La descripción no puede superar los 50 caracteres.",
                   },
                 })}
               />
