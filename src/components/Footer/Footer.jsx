@@ -9,7 +9,7 @@ function Footer() {
     <footer className="footer">
 
       <div className="footer__social">
-        <h3>Redes</h3>
+        <h3>Redes Sociales</h3>
 
         <div className="footer__icons">
           <a 

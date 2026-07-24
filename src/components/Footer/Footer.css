@@ -10,3 +10,20 @@
 .footer__icons img {
   cursor: pointer;
 }
+
+/* Color Azul para los Títulos del Footer */
+.footer h3,
+.footer h4,
+.footer-title,
+.footer__title {
+  color: #2563eb !important;
+}
+
+/* Color Azul para la información de Contacto */
+.footer p,
+.footer span,
+.footer a,
+.footer-contact,
+.footer__contact {
+  color: #2563eb !important;
+}
