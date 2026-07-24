@@ -1,17 +1,9 @@
-import {
-  authFirebase,
-  googleProvider,
-} from "../firebase";
-import { asegurarUsuarioEnFirestore } from "../utils/usuarios";
-import { 
-  signInWithEmailAndPassword,
-  signInWithPopup
-} from "firebase/auth";
-
+import { authFirebase, googleProvider } from "../firebase";
+import { signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 import { toast } from "react-toastify";
 import { useForm } from "react-hook-form";
 import { NavLink, useNavigate } from "react-router-dom";
-import loginImg from "../assets/images/regin.webp";
+
 function Login() {
   const navigate = useNavigate();
 
@@ -54,8 +46,7 @@ function Login() {
 
   const iniciarSesionConGoogle = async () => {
     try {
-      const resultado = await signInWithPopup(authFirebase, googleProvider);
-      await asegurarUsuarioEnFirestore(resultado.user);
+      await signInWithPopup(authFirebase, googleProvider);
       toast.success("Bienvenido a PoliTask");
       navigate("/dashboard", { replace: true });
     } catch (error) {
@@ -75,34 +66,19 @@ function Login() {
   };
 
   return (
-    <main className="auth-split">
-      <div
-        className="auth-split__image"
-        style={{ backgroundImage: `url(${loginImg})` }}
-      />
-      <div className="auth-split__form">
-      <div className="auth-card">
-        <h2 className="auth-title">Iniciar sesión</h2>
-        <p className="auth-subtitle">Ingresa tus datos para continuar</p>
-
-        <form className="formulario" onSubmit={handleSubmit(iniciarSesion)}>
-          <div className="campo">
-            <label htmlFor="email">Correo electrónico:</label>
-            <input
-              id="email"
-              type="email"
-              placeholder="ejemplo@correo.com"
-              {...register("email", {
-                required: "El correo es obligatorio",
-                pattern: {
-                  value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-                  message: "Ingresa un correo válido",
-                },
-              })}
-            />
-            {errors.email && (
-              <span className="errors">{errors.email.message}</span>
-            )}
+    <main className="auth-page-container">
+      <div className="auth-card auth-card-split">
+        {/* COLUMNA IZQUIERDA: Banner */}
+        <div
+          className="auth-image-side"
+          style={{
+            backgroundImage:
+              'url("https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?q=80&w=1000&auto=format&fit=crop")',
+          }}
+        >
+          <div className="auth-image-content">
+            <h3>¡Hola de nuevo!</h3>
+            <p>Organiza tus tareas y proyectos académicos de forma eficiente en PoliTask.</p>
           </div>
         </div>
 
@@ -190,7 +166,6 @@ function Login() {
           </NavLink>
         </div>
       </div>
-  </div>
     </main>
   );
 }
