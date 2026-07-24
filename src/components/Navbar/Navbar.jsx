@@ -58,29 +58,28 @@ function Navbar({ darkMode, setDarkMode }) {
           </h1>
         </motion.div>
 
-        {/* BOTÓN MENÚ HAMBURGUESA */}
-        <button
-          className={`hamburger ${menuOpen ? "is-active" : ""}`}
-          onClick={toggleMenu}
-          aria-label="Toggle menu"
-        >
-          <span className="bar"></span>
-          <span className="bar"></span>
-          <span className="bar"></span>
-        </button>
+                <ul className="navbar__menu">
+                    {[
+                        ["Inicio", "#inicio"],
+                        ["Nosotros", "/nosotros"],
+                        ["App", "/app"],
+                        ["Recompensas", "/recompensas"],
+                        ["Galería", "/galeria"],
+                        ["Contacto", "/contacto"],
+                    ].map(([text, href], index) => (
+                        <motion.li key={index} variants={itemVariants}>
 
-        {/* MENÚ DE NAVEGACIÓN */}
-        <ul className={`navbar__menu ${menuOpen ? "active" : ""}`}>
-          {[
-            ["Inicio", "#inicio"],
-            ["Nosotros", "/nosotros"],
-            ["App", "/app"],
-            ["Recompensas", "/recompensas"],
-            ["Galería", "/galeria"],
-            ["Contacto", "/contacto"],
-          ].map(([text, href], index) => (
-            <motion.li key={index} variants={itemVariants}>
-              {text === "Inicio" ? (
+                                
+
+                            {text === "Nosotros" || text === "App" || text === "Contacto"
+                            || text === "Galeria" || text === "Recompensas"? (
+
+                                <NavLink className="navbar__link" to={href}>
+                                {text}
+                                </NavLink>
+
+                    ) : (
+
                 <motion.a
                   href={href}
                   onClick={closeMenu}

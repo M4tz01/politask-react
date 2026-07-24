@@ -4,6 +4,20 @@ import { BrowserRouter } from "react-router-dom";
 import App from "./App";
 import "./styles/global.css";
 
+import { registerSW } from 'virtual:pwa-register'
+
+
+registerSW({
+  onOfflineReady() {
+    console.log('PoliTask está disponible sin conexión')
+  },
+
+  onNeedRefresh() {
+    console.log('Hay una nueva versión disponible')
+  }
+})
+
+
 createRoot(document.getElementById("root")).render(
     <StrictMode>
         <BrowserRouter>
@@ -11,3 +25,6 @@ createRoot(document.getElementById("root")).render(
         </BrowserRouter>
     </StrictMode>
 );
+
+
+
