@@ -29,11 +29,10 @@ const Contacto = lazy(() => import("./pages/Contacto"));
 const Galeria = lazy(() => import("./pages/Galeria"));
 const Recompensas = lazy(() => import("./pages/Recompensas"));
 
-// Recibimos las props en Home
-function Home({ darkMode, setDarkMode }) {
+function Home() {
   return (
     <>
-      <Navbar darkMode={darkMode} setDarkMode={setDarkMode} />
+      <Navbar />
       <Hero />
       <About />
       <Rewards />
@@ -59,11 +58,7 @@ function App() {
     <div className={`app ${darkMode ? "dark" : ""}`}>
       <Suspense fallback={<div className="app-loading">Cargando...</div>}>
         <Routes>
-          {/* Le enviamos el estado y la función a Home */}
-          <Route 
-            path="/" 
-            element={<Home darkMode={darkMode} setDarkMode={setDarkMode} />} 
-          />
+          <Route path="/" element={<Home />} />
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
           <Route path="/dashboard" element={<Dashboard />} />

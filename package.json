@@ -10,6 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "buid": "^0.3.1",
     "build": "^0.1.4",
     "chart.js": "^4.5.1",
     "firebase": "^12.16.0",
