@@ -14,7 +14,7 @@ import {
   updateDoc,
   where,
 } from "firebase/firestore";
-
+import EstadisticasPanel from "../components/EstadisticasPanel/EstadisticasPanel";
 import { authFirebase, dbFirebase } from "../firebase";
 import "./Dashboard.css";
 
@@ -40,7 +40,7 @@ function Dashboard() {
   const [guardando, setGuardando] = useState(false);
   const [mensaje, setMensaje] = useState("");
   const [errorGeneral, setErrorGeneral] = useState("");
-
+  const [tareasAceptadas, setTareasAceptadas] = useState([]);
   const {
     register,
     handleSubmit,
@@ -102,7 +102,22 @@ function Dashboard() {
       setErrorGeneral("No se pudieron cargar las tareas de la comunidad.");
     }
   };
-
+  const obtenerTareasAceptadas = async (uid) => {
+  try {
+    const consulta = query(
+      collection(dbFirebase, "tareas"),
+      where("aceptadoPor", "==", uid)
+    );
+    const snapshot = await getDocs(consulta);
+    const documentos = snapshot.docs.map((doc) => ({
+      id: doc.id,
+      ...doc.data(),
+    }));
+    setTareasAceptadas(documentos);
+  } catch (error) {
+    console.error("Error al obtener tareas aceptadas:", error);
+  }
+  };
   const obtenerPuntos = async (uid) => {
     try {
       const snap = await getDoc(doc(dbFirebase, "usuarios", uid));
@@ -125,6 +140,7 @@ function Dashboard() {
       obtenerTareas(user.uid);
       obtenerTareasDisponibles(user.uid);
       obtenerPuntos(user.uid);
+      obtenerTareasAceptadas(user.uid);
     });
 
     return cancelarObservador;
@@ -362,7 +378,11 @@ function Dashboard() {
           Cerrar sesión
         </button>
       </header>
-
+      <EstadisticasPanel
+      tareas={tareas}
+      tareasAceptadas={tareasAceptadas}
+      puntos={puntosUsuario}
+      />
       <main className="dashboard__content">
         <section className="dashboard__panel dashboard__form-panel">
           <div className="dashboard__section-heading">
