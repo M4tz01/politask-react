@@ -13,31 +13,32 @@ function Footer() {
 
         <div className="footer__icons">
           <a 
-            href="https://facebook.com" 
-            target="_blank" 
-            rel="noopener noreferrer"
-            aria-label="Facebook"
-          >
-            <img src={facebook} alt="Facebook" />
-          </a>
+  href="https://facebook.com" 
+  target="_blank" 
+  rel="noopener noreferrer"
+  aria-label="Facebook"
+>
+  <img src={facebook} alt="Facebook" />
+</a>
 
-          <a 
-            href="https://instagram.com" 
-            target="_blank" 
-            rel="noopener noreferrer"
-            aria-label="Instagram"
-          >
-            <img src={instagram} alt="Instagram" />
-          </a>
+<a 
+  href="https://www.instagram.com/poli_task/" 
+  target="_blank" 
+  rel="noopener noreferrer"
+  aria-label="Instagram"
+>
+  <img src={instagram} alt="Instagram" />
+</a>
 
-          <a 
-            href="https://x.com" 
-            target="_blank" 
-            rel="noopener noreferrer"
-            aria-label="X"
-          >
-            <img src={x} alt="X" />
-          </a>
+<a 
+  href="https://x.com" 
+  target="_blank" 
+  rel="noopener noreferrer"
+  aria-label="X"
+>
+  <img src={x} alt="X" />
+</a>
+          
         </div>
       </div>
 
