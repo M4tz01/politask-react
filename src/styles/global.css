@@ -1324,6 +1324,114 @@ box-shadow: 0 5px 15px
     font-size: 1rem;
   }
 }
+
+
+/* ==========================================
+   LOGIN - ESTRUCTURA ACTUAL
+========================================== */
+
+.auth-container {
+    min-height: 100vh;
+    display: flex;
+    width: 100%;
+    background: #f8fafc;
+}
+
+.auth-image-side {
+    flex: 1;
+    min-height: 100vh;
+
+    background-size: cover;
+    background-position: center;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    position: relative;
+}
+
+.auth-image-overlay {
+    position: absolute;
+    inset: 0;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    padding: 4rem;
+
+    background: rgba(0, 0, 0, 0.35);
+}
+
+.auth-image-overlay h1 {
+    color: white;
+    font-size: 4rem;
+    margin-bottom: 1.5rem;
+}
+
+.auth-image-overlay p {
+    color: white;
+    font-size: 1.8rem;
+    max-width: 500px;
+}
+
+.auth-form-side {
+    flex: 1;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    padding: 5rem;
+    background: white;
+}
+
+.auth-title {
+    font-size: 3rem;
+    color: #1e3a8a;
+    margin-bottom: 1rem;
+}
+
+.auth-subtitle {
+    color: #64748b;
+    margin-bottom: 3rem;
+}
+
+/* ==========================================
+   RESPONSIVE
+========================================== */
+
+@media (max-width: 768px) {
+
+    .auth-container {
+        flex-direction: column;
+    }
+
+    .auth-image-side {
+        min-height: 220px;
+        height: 220px;
+        width: 100%;
+    }
+
+    .auth-image-overlay {
+        display: none;
+    }
+
+    .auth-form-side {
+        width: 100%;
+        padding: 3rem 2rem;
+    }
+
+    .auth-title {
+        font-size: 2.5rem;
+    }
+
+}
+
+
+
+
 /* ==========================================
    DARK MODE — LOGIN Y REGISTRO
    ========================================== */
