@@ -1,9 +1,9 @@
 import "./Download.css";
 
-import movil from "../../assets/images/movil.png";
-import scanner from "../../assets/images/scanner.png";
-import googleplay from "../../assets/images/googleplay.png";
-import appstore from "../../assets/images/appstore.png";
+import movil from "../../assets/images/movil.webp";
+import scanner from "../../assets/images/scanner.webp";
+import googleplay from "../../assets/images/googleplay.webp";
+import appstore from "../../assets/images/appstore.webp";
 
 function Download() {
     return (

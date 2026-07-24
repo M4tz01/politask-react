@@ -1,0 +1,36 @@
+.theme-toggle-fab {
+  position: fixed;
+  bottom: 25px;
+  left: 25px;
+  z-index: 999;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  border: none;
+  background-color: #293a4e;
+  color: #fff;
+  font-size: 1.6rem;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.theme-toggle-fab:hover {
+  transform: scale(1.08);
+}
+
+.app.dark .theme-toggle-fab {
+  background-color: #f1f5f9;
+  color: #1e293b;
+}
+
+@media (max-width: 480px) {
+  .theme-toggle-fab {
+    bottom: 16px;
+    left: 16px;
+    width: 46px;
+    height: 46px;
+  }
+}

@@ -1001,47 +1001,89 @@ box-shadow: 0 5px 15px
    ESTILOS DE LOGIN Y REGISTRO (POLI-TASK)
    ========================================== */
 
-.auth-page-container {
+.auth-split {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: calc(100vh - 120px);
-  padding: 2.5rem 1rem;
-  background-color: #f1f5f9;
+  min-height: 100vh;
+  padding: 1.5rem;
+  gap: 1.5rem;
+  background-color: #f8fafc;
+  box-sizing: border-box;
 }
 
-/* Tarjeta principal ampliada a 680px */
+.auth-split__image {
+  flex: 1;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  border-radius: 24px;
+  overflow: hidden;
+}
+
+.auth-split__image::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(41, 58, 78, 0.15),
+    rgba(41, 58, 78, 0.55)
+  );
+}
+
+.auth-split__form {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2.5rem 1rem;
+  min-width: 0;
+}
+
 .auth-card {
   background: #ffffff;
   width: 100%;
-  max-width: 680px; 
+  max-width: 480px;
   padding: 3rem 3.5rem;
   border-radius: 20px;
   box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
   border: 1px solid #e2e8f0;
+  box-sizing: border-box;
 }
 
 .auth-title {
-  font-size: 2.2rem;
+  font-size: 3rem;
   font-weight: 700;
   text-align: center;
-  margin-bottom: 2rem;
+  margin-bottom: 0.5rem;
   color: #0f172a;
+}
+
+.auth-subtitle {
+  text-align: center;
+  color: #64748b;
+  font-size: 1.7rem;
+  margin-bottom: 2rem;
 }
 
 /* Formulario e Inputs */
 .formulario {
   width: 100%;
+  max-width: 100%;
+  background: transparent;
+  padding: 0;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
 }
 
 .formulario fieldset {
-  border: none; /* Elimina el cuadro gris interior */
+  border: none;
   padding: 0;
   margin: 0 0 1.5rem 0;
 }
 
 .formulario legend {
-  font-size: 1.2rem;
+  font-size: 1.7rem;
   font-weight: 600;
   color: #475569;
   margin-bottom: 1.5rem;
@@ -1051,24 +1093,27 @@ box-shadow: 0 5px 15px
 .campo {
   display: flex;
   flex-direction: column;
+  gap: 0.6rem;
   margin-bottom: 1.5rem;
+  width: 100%;
 }
 
 .campo label {
-  font-size: 1.05rem;
+  font-size: 1.5rem;
   font-weight: 600;
-  margin-bottom: 0.5rem;
   color: #334155;
 }
 
 .campo input {
   width: 100%;
   padding: 1rem 1.2rem;
-  font-size: 1.1rem;
+  font-size: 1.5rem;
   border: 1.5px solid #cbd5e1;
   border-radius: 10px;
   outline: none;
   transition: all 0.2s ease;
+  box-sizing: border-box;
+  background-color: #ffffff;
 }
 
 .campo input:focus {
@@ -1086,7 +1131,7 @@ box-shadow: 0 5px 15px
 .btn-primary {
   width: 100%;
   padding: 1rem;
-  font-size: 1.15rem;
+  font-size: 1.5rem;
   font-weight: 600;
   color: #ffffff;
   background-color: #2563eb;
@@ -1108,7 +1153,7 @@ box-shadow: 0 5px 15px
   text-align: center;
   margin: 2rem 0;
   color: #64748b;
-  font-size: 0.95rem;
+  font-size: 2rem;
 }
 
 .login-divider::before,
@@ -1130,7 +1175,7 @@ box-shadow: 0 5px 15px
   justify-content: center;
   gap: 0.75rem;
   padding: 1rem;
-  font-size: 1.05rem;
+  font-size: 1.5rem;
   font-weight: 600;
   color: #334155;
   background-color: #ffffff;
@@ -1154,7 +1199,7 @@ box-shadow: 0 5px 15px
   display: block;
   text-align: center;
   margin-top: 2rem;
-  font-size: 1.05rem;
+  font-size: 1.5rem;
   color: #2563eb;
   text-decoration: none;
   font-weight: 500;
@@ -1164,181 +1209,152 @@ box-shadow: 0 5px 15px
   text-decoration: underline;
 }
 
+@media (max-width: 900px) {
+  .auth-split__image {
+    display: none;
+  }
 
+  .auth-split {
+    padding: 0;
+  }
 
+  .auth-split__form {
+    padding: 3rem 1.5rem;
+  }
+
+  .auth-card {
+    max-width: 560px;
+    padding: 2.5rem 2rem;
+  }
+
+  .auth-title {
+    font-size: 2.6rem;
+  }
+
+  .campo label {
+    font-size: 1.2rem;
+  }
+
+  .campo input {
+    padding: 1.2rem 1.4rem;
+    font-size: 1.3rem;
+  }
+
+  .btn-primary,
+  .btn-google {
+    padding: 1.2rem;
+    font-size: 1.2rem;
+  }
+}
+@media (max-width: 480px) {
+  .auth-split {
+    padding: 0;
+  }
+
+  .auth-split__form {
+    padding: 2rem 1rem;
+  }
+
+  .auth-card {
+    max-width: 100%;
+    padding: 2rem 1.2rem;
+    border-radius: 14px;
+  }
+
+  .auth-title {
+    font-size: 2rem;
+  }
+
+  .auth-subtitle {
+    font-size: 1.1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .formulario legend {
+    font-size: 1.2rem;
+  }
+
+  .campo label {
+    font-size: 1rem;
+  }
+
+  .campo input {
+    padding: 0.9rem 1rem;
+    font-size: 1rem;
+  }
+
+  .btn-primary,
+  .btn-google {
+    padding: 1rem;
+    font-size: 1rem;
+  }
+
+  .login-divider,
+  .enlace {
+    font-size: 1rem;
+  }
+}
 /* ==========================================
-   CORRECCIÓN DEFINITIVA DE TAMAÑO Y RECUADRO
+   DARK MODE — LOGIN Y REGISTRO
    ========================================== */
 
-/* Contenedor principal centrado */
-.auth-page-container {
-  display: flex !important;
-  justify-content: center !important;
-  align-items: center !important;
-  padding: 3rem 1rem !important;
-  min-height: calc(100vh - 120px) !important;
-  background-color: #f8fafc !important;
+.app.dark .auth-split {
+  background-color: #121212;
 }
 
-/* Tarjeta principal BIEN AMPLIA */
-.auth-card {
-  background: #ffffff !important;
-  width: 100% !important;
-  max-width: 800px !important; /* Tarjeta más ancha y bien proporcional */
-  padding: 3.5rem 4rem !important;
-  border-radius: 20px !important;
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08) !important;
-  border: 1px solid #e2e8f0 !important;
-  box-sizing: border-box !important;
+.app.dark .auth-card {
+  background: #1f1f1f;
+  border: 1px solid #444;
+  box-shadow: none;
 }
 
-.auth-title {
-  font-size: 2.4rem !important;
-  font-weight: 700 !important;
-  text-align: center !important;
-  color: #0f172a !important;
-  margin-bottom: 0.5rem !important;
+.app.dark .auth-title,
+.app.dark .auth-subtitle {
+  color: #ffffff;
 }
 
-.auth-subtitle {
-  text-align: center !important;
-  color: #64748b !important;
-  font-size: 1.1rem !important;
-  margin-bottom: 2.5rem !important;
+.app.dark .formulario legend {
+  color: #d1d5db;
 }
 
-/* ELIMINAR EL RECUADRO BLANCO INTERNO */
-.formulario,
-.auth-card form,
-.auth-card fieldset {
-  background: transparent !important;
-  border: none !important;
-  box-shadow: none !important;
-  padding: 0 !important;
-  margin: 0 !important;
-  width: 100% !important;
-  max-width: 100% !important;
+.app.dark .campo label {
+  color: #e2e8f0;
 }
 
-/* Campos e Inputs ocupando todo el ancho */
-.campo {
-  display: flex !important;
-  flex-direction: column !important;
-  gap: 0.6rem !important;
-  margin-bottom: 1.8rem !important;
-  width: 100% !important;
+.app.dark .campo input {
+  background-color: #2b2b2b;
+  color: #ffffff;
+  border: 1.5px solid #555;
 }
 
-.campo label {
-  font-size: 1.1rem !important;
-  font-weight: 600 !important;
-  color: #334155 !important;
+.app.dark .campo input::placeholder {
+  color: #9ca3af;
 }
 
-.campo input {
-  width: 100% !important;
-  padding: 1.1rem 1.3rem !important; /* Inputs más altos y cómodos */
-  font-size: 1.15rem !important;
-  border: 1.5px solid #cbd5e1 !important;
-  border-radius: 12px !important;
-  outline: none !important;
-  transition: all 0.2s ease !important;
-  box-sizing: border-box !important;
-  background-color: #ffffff !important;
+.app.dark .campo input:focus {
+  border-color: #6c63ff;
+  box-shadow: 0 0 0 4px rgba(108, 99, 255, 0.2);
 }
 
-.campo input:focus {
-  border-color: #2563eb !important;
-  box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.15) !important;
+.app.dark .login-divider {
+  color: #9ca3af;
 }
 
-.errors {
-  color: #ef4444 !important;
-  font-size: 0.95rem !important;
+.app.dark .login-divider::before,
+.app.dark .login-divider::after {
+  border-bottom: 1px solid #444;
 }
 
-/* Botón Iniciar Sesión */
-.btn-primary {
-  width: 100% !important;
-  padding: 1.1rem !important;
-  font-size: 1.2rem !important;
-  font-weight: 600 !important;
-  color: #ffffff !important;
-  background-color: #2563eb !important;
-  border: none !important;
-  border-radius: 12px !important;
-  cursor: pointer !important;
-  transition: background-color 0.2s ease !important;
-  margin-top: 0.5rem !important;
+.app.dark .btn-google {
+  color: #e2e8f0;
+  border: 1.5px solid #555;
 }
 
-.btn-primary:hover {
-  background-color: #1d4ed8 !important;
+.app.dark .btn-google:hover {
+  background-color: #2b2b2b;
+  border-color: #777;
 }
 
-/* Divisor */
-.login-divider {
-  display: flex !important;
-  align-items: center !important;
-  text-align: center !important;
-  margin: 2.2rem 0 !important;
-  color: #94a3b8 !important;
-  font-size: 1rem !important;
-}
-
-.login-divider::before,
-.login-divider::after {
-  content: '' !important;
-  flex: 1 !important;
-  border-bottom: 1px solid #e2e8f0 !important;
-}
-
-.login-divider span {
-  padding: 0 1rem !important;
-}
-
-/* Botón Google */
-.btn-google {
-  width: 100% !important;
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  gap: 0.8rem !important;
-  padding: 1rem !important;
-  font-size: 1.1rem !important;
-  font-weight: 600 !important;
-  color: #334155 !important;
-  background-color: #ffffff !important;
-  border: 1.5px solid #cbd5e1 !important;
-  border-radius: 12px !important;
-  cursor: pointer !important;
-  transition: all 0.2s ease !important;
-}
-
-.btn-google:hover {
-  background-color: #f8fafc !important;
-  border-color: #94a3b8 !important;
-}
-
-/* Enlace inferior */
-.enlace {
-  display: block !important;
-  text-align: center !important;
-  margin-top: 2.2rem !important;
-  font-size: 1.1rem !important;
-  color: #2563eb !important;
-  text-decoration: none !important;
-  font-weight: 500 !important;
-}
-
-.enlace:hover {
-  text-decoration: underline !important;
-width: 28px;
-height: 28px;
-border-radius: 50%;
-display: grid;
-place-items: center;
-color: #ffffff;
-background-color: #4285f4;
-font-weight: 700;
+.app.dark .enlace {
+  color: #a5b4fc;
 }

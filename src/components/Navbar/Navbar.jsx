@@ -3,10 +3,10 @@ import "./Navbar.css";
 import { motion } from "framer-motion";
 import { Link, NavLink } from "react-router-dom";
 
-import logo from "../../assets/images/logo.png";
-import user from "../../assets/images/user.png";
+import logo from "../../assets/images/logo.webp";
+import user from "../../assets/images/user.webp";
 
-function Navbar({ darkMode, setDarkMode }) {
+function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   const toggleMenu = () => {
@@ -58,7 +58,7 @@ function Navbar({ darkMode, setDarkMode }) {
           </h1>
         </motion.div>
 
-                <ul className="navbar__menu">
+<ul className={`navbar__menu ${menuOpen ? "active" : ""}`}>
                     {[
                         ["Inicio", "/"],
                         ["Nosotros", "/nosotros"],
@@ -98,13 +98,15 @@ function Navbar({ darkMode, setDarkMode }) {
         {/* BOTÓN DARK MODE + LOGIN */}
         <motion.div className="navbar__actions" variants={itemVariants}>
           <button
-            className="theme-toggle"
-            onClick={() => setDarkMode(!darkMode)}
-            aria-label="Cambiar tema"
+            className={`hamburger ${menuOpen ? "is-active" : ""}`}
+            onClick={toggleMenu}
+            aria-label="Abrir menú"
+            aria-expanded={menuOpen}
           >
-            {darkMode ? "☀️" : "🌙"}
+            <span className="bar"></span>
+            <span className="bar"></span>
+            <span className="bar"></span>
           </button>
-
           <div className="navbar__login">
             <Link
               to="/login"

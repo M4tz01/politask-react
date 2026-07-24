@@ -2,7 +2,7 @@ import Navbar from "../components/Navbar/Navbar";
 import Footer from "../components/Footer/Footer";
 import "../styles/AboutUs.css";
 
-import estudio from "../assets/images/estudio.jpg";
+import estudio from "../assets/images/estudio.webp";
 function AboutUs() {
     return (
         <>

@@ -1,8 +1,8 @@
 import "./Footer.css";
 
-import facebook from "../../assets/images/facebook.png";
-import instagram from "../../assets/images/ig.png";
-import x from "../../assets/images/x.png";
+import facebook from "../../assets/images/facebook.webp";
+import instagram from "../../assets/images/ig.webp";
+import x from "../../assets/images/x.webp";
 
 function Footer() {
   return (

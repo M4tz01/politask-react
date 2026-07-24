@@ -9,7 +9,7 @@ import { useForm } from "react-hook-form";
 import { NavLink, useNavigate } from "react-router-dom";
 import { authFirebase, googleProvider } from "../firebase";
 import { asegurarUsuarioEnFirestore } from "../utils/usuarios";
-
+import registerImg from "../assets/images/regin.webp";
 
 
 const Register = () => {
@@ -70,7 +70,12 @@ const Register = () => {
   };
 
   return (
-    <main className="auth-page-container">
+    <main className="auth-split">
+      <div
+        className="auth-split__image"
+        style={{ backgroundImage: `url(${registerImg})` }}
+      />
+      <div className="auth-split__form">
       <div className="auth-card">
         <h2 className="auth-title">Crear Cuenta</h2>
 
@@ -168,6 +173,7 @@ const Register = () => {
           Si ya tienes cuenta, puedes iniciar sesión aquí
         </NavLink>
       </div>
+    </div>
     </main>
   );
 };

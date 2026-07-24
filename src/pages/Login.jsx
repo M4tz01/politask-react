@@ -11,7 +11,7 @@ import {
 import { toast } from "react-toastify";
 import { useForm } from "react-hook-form";
 import { NavLink, useNavigate } from "react-router-dom";
-
+import loginImg from "../assets/images/regin.webp";
 function Login() {
   const navigate = useNavigate();
 
@@ -80,7 +80,12 @@ function Login() {
   };
 
   return (
-    <main className="auth-page-container">
+    <main className="auth-split">
+      <div
+        className="auth-split__image"
+        style={{ backgroundImage: `url(${loginImg})` }}
+      />
+      <div className="auth-split__form">
       <div className="auth-card">
         <h2 className="auth-title">Iniciar sesión</h2>
         <p className="auth-subtitle">Ingresa tus datos para continuar</p>
@@ -163,6 +168,7 @@ function Login() {
           ¿No tienes cuenta? Regístrate aquí
         </NavLink>
       </div>
+  </div>
     </main>
   );
 }
