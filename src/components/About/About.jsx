@@ -1,6 +1,6 @@
 import "./About.css";
 
-import manos from "../../assets/images/manos.png";
+import manos from "../../assets/images/manos.webp";
 
 function About() {
     return (

@@ -1,7 +1,7 @@
 import "./Hero.css";
 import { useEffect } from "react";
 import Typed from "typed.js";
-import buho from "../../assets/images/buho.png";
+import buho from "../../assets/images/buho.webp";
 
 function Hero() {
     useEffect(() => {

@@ -567,13 +567,35 @@ h2 {
 }
 
 /* FOOTER */
+/* FOOTER */
 .footer {
     display: flex;
     justify-content: space-around;
     padding: 3rem;
+    padding-bottom: 9rem;   /* espacio para que no lo tapen los botones flotantes */
     flex-wrap: wrap;
     text-align: center;
     background-color: #eee;
+    position: relative;
+}
+
+.footer__social,
+.footer__contact {
+    display: flex;
+    flex-direction: column;
+    align-items: center;   /* centra el bloque completo, no solo el texto */
+}
+
+.footer__icons {
+    display: flex;
+    justify-content: center;   /* ← esto centra la fila de íconos */
+    gap: 3rem;
+    margin-top: 10px;
+}
+
+.footer__icons img {
+    width: 40px;
+    cursor: pointer;
 }
 
 .footer__icons {
@@ -667,6 +689,7 @@ h2 {
     .footer {
         flex-direction: column;
         gap: 2rem;
+        padding-bottom: 11rem;   /* más espacio en móvil */
     }
 }
 
@@ -1000,22 +1023,50 @@ box-shadow: 0 5px 15px
 /* ==========================================
    ESTILOS DE LOGIN Y REGISTRO (POLI-TASK)
    ========================================== */
-.auth-page-container {
+
+.auth-split {
+  display: flex;
   min-height: 100vh;
-  width: 100%;
+  padding: 1.5rem;
+  gap: 1.5rem;
+  background-color: #f8fafc;
+  box-sizing: border-box;
+}
+
+.auth-split__image {
+  flex: 1;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  border-radius: 24px;
+  overflow: hidden;
+}
+
+.auth-split__image::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(41, 58, 78, 0.15),
+    rgba(41, 58, 78, 0.55)
+  );
+}
+
+.auth-split__form {
+  flex: 1;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 1.5rem;
-  box-sizing: border-box;
-  background-color: #f8fafc;
+  padding: 2.5rem 1rem;
+  min-width: 0;
 }
 
 .auth-card {
   background: #ffffff;
   width: 100%;
-  max-width: 800px;
-  padding: 3.5rem 4rem;
+  max-width: 480px;
+  padding: 3rem 3.5rem;
   border-radius: 20px;
   box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
   border: 1px solid #e2e8f0;
@@ -1023,14 +1074,43 @@ box-shadow: 0 5px 15px
 }
 
 .auth-title {
-  font-size: 2.4rem;
+  font-size: 3rem;
   font-weight: 700;
   text-align: center;
+  margin-bottom: 0.5rem;
   color: #0f172a;
   margin-bottom: 0.5rem;
 }
 
 .auth-subtitle {
+  text-align: center;
+  color: #64748b;
+  font-size: 1.7rem;
+  margin-bottom: 2rem;
+}
+
+/* Formulario e Inputs */
+.formulario {
+  width: 100%;
+  max-width: 100%;
+  background: transparent;
+  padding: 0;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.formulario fieldset {
+  border: none;
+  padding: 0;
+  margin: 0 0 1.5rem 0;
+}
+
+.formulario legend {
+  font-size: 1.7rem;
+  font-weight: 600;
+  color: #475569;
+  margin-bottom: 1.5rem;
   text-align: center;
   color: #64748b;
   font-size: 1.1rem;
@@ -1053,27 +1133,26 @@ box-shadow: 0 5px 15px
   display: flex;
   flex-direction: column;
   gap: 0.6rem;
-  margin-bottom: 1.8rem;
+  margin-bottom: 1.5rem;
   width: 100%;
 }
 
 .campo label {
-  font-size: 1.1rem;
+  font-size: 1.5rem;
   font-weight: 600;
   color: #334155;
 }
 
 .campo input {
   width: 100%;
-  padding: 1.1rem 1.3rem;
-  font-size: 1.15rem;
+  padding: 1rem 1.2rem;
+  font-size: 1.5rem;
   border: 1.5px solid #cbd5e1;
   border-radius: 12px;
   outline: none;
   transition: all 0.2s ease;
   box-sizing: border-box;
   background-color: #ffffff;
-  color: #0f172a;
 }
 
 .campo input:focus {
@@ -1088,8 +1167,8 @@ box-shadow: 0 5px 15px
 
 .btn-primary {
   width: 100%;
-  padding: 1.1rem;
-  font-size: 1.2rem;
+  padding: 1rem;
+  font-size: 1.5rem;
   font-weight: 600;
   color: #ffffff;
   background-color: #2563eb;
@@ -1108,9 +1187,9 @@ box-shadow: 0 5px 15px
   display: flex;
   align-items: center;
   text-align: center;
-  margin: 2.2rem 0;
-  color: #94a3b8;
-  font-size: 1rem;
+  margin: 2rem 0;
+  color: #64748b;
+  font-size: 2rem;
 }
 
 .login-divider::before,
@@ -1131,7 +1210,7 @@ box-shadow: 0 5px 15px
   justify-content: center;
   gap: 0.8rem;
   padding: 1rem;
-  font-size: 1.1rem;
+  font-size: 1.5rem;
   font-weight: 600;
   color: #334155;
   background-color: #ffffff;
@@ -1149,8 +1228,8 @@ box-shadow: 0 5px 15px
 .enlace {
   display: block;
   text-align: center;
-  margin-top: 2.2rem;
-  font-size: 1.1rem;
+  margin-top: 2rem;
+  font-size: 1.5rem;
   color: #2563eb;
   text-decoration: none;
   font-weight: 500;
@@ -1160,140 +1239,152 @@ box-shadow: 0 5px 15px
   text-decoration: underline;
 }
 
+@media (max-width: 900px) {
+  .auth-split__image {
+    display: none;
+  }
+
+  .auth-split {
+    padding: 0;
+  }
+
+  .auth-split__form {
+    padding: 3rem 1.5rem;
+  }
+
+  .auth-card {
+    max-width: 560px;
+    padding: 2.5rem 2rem;
+  }
+
+  .auth-title {
+    font-size: 2.6rem;
+  }
+
+  .campo label {
+    font-size: 1.2rem;
+  }
+
+  .campo input {
+    padding: 1.2rem 1.4rem;
+    font-size: 1.3rem;
+  }
+
+  .btn-primary,
+  .btn-google {
+    padding: 1.2rem;
+    font-size: 1.2rem;
+  }
+}
+@media (max-width: 480px) {
+  .auth-split {
+    padding: 0;
+  }
+
+  .auth-split__form {
+    padding: 2rem 1rem;
+  }
+
+  .auth-card {
+    max-width: 100%;
+    padding: 2rem 1.2rem;
+    border-radius: 14px;
+  }
+
+  .auth-title {
+    font-size: 2rem;
+  }
+
+  .auth-subtitle {
+    font-size: 1.1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .formulario legend {
+    font-size: 1.2rem;
+  }
+
+  .campo label {
+    font-size: 1rem;
+  }
+
+  .campo input {
+    padding: 0.9rem 1rem;
+    font-size: 1rem;
+  }
+
+  .btn-primary,
+  .btn-google {
+    padding: 1rem;
+    font-size: 1rem;
+  }
+
+  .login-divider,
+  .enlace {
+    font-size: 1rem;
+  }
+}
 /* ==========================================
-   MODO OSCURO PARA AUTH / LOGIN / REGISTRO
+   DARK MODE — LOGIN Y REGISTRO
    ========================================== */
-.app.dark .auth-page-container {
+
+.app.dark .auth-split {
   background-color: #121212;
 }
 
 .app.dark .auth-card {
-  background-color: #1e1e1e;
-  border-color: #333333;
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+  background: #1f1f1f;
+  border: 1px solid #444;
+  box-shadow: none;
 }
 
-.app.dark .auth-title {
+.app.dark .auth-title,
+.app.dark .auth-subtitle {
   color: #ffffff;
 }
 
-.app.dark .auth-subtitle {
-  color: #a1a1aa;
+.app.dark .formulario legend {
+  color: #d1d5db;
 }
 
 .app.dark .campo label {
-  color: #e4e4e7;
+  color: #e2e8f0;
 }
 
 .app.dark .campo input {
-  background-color: #2a2a2a;
+  background-color: #2b2b2b;
   color: #ffffff;
-  border-color: #444444;
+  border: 1.5px solid #555;
+}
+
+.app.dark .campo input::placeholder {
+  color: #9ca3af;
 }
 
 .app.dark .campo input:focus {
-  border-color: #3b82f6;
-}
-
-.app.dark .btn-google {
-  background-color: #2a2a2a;
-  color: #ffffff;
-  border-color: #444444;
-}
-
-.app.dark .btn-google:hover {
-  background-color: #333333;
+  border-color: #6c63ff;
+  box-shadow: 0 0 0 4px rgba(108, 99, 255, 0.2);
 }
 
 .app.dark .login-divider {
-  color: #71717a;
+  color: #9ca3af;
 }
 
 .app.dark .login-divider::before,
 .app.dark .login-divider::after {
-  border-bottom-color: #333333;
+  border-bottom: 1px solid #444;
+}
+
+.app.dark .btn-google {
+  color: #e2e8f0;
+  border: 1.5px solid #555;
+}
+
+.app.dark .btn-google:hover {
+  background-color: #2b2b2b;
+  border-color: #777;
 }
 
 .app.dark .enlace {
-  color: #60a5fa;
-}
-
-/* ==========================================
-   ESTILOS SPLIT (TARJETA EXPANDIDA)
-   ========================================== */
-.auth-card-split {
-  display: grid;
-  grid-template-columns: 1.2fr 1fr;
-  width: 100%;             /* Ocupa todo el ancho del contenedor */
-  max-width: 1400px;       /* Límite para monitores grandes */
-  min-height: 85vh;        /* Ocupa casi todo el alto de la pantalla */
-  padding: 0 !important;
-  overflow: hidden;
-  border-radius: 24px;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
-}
-
-/* Lado de la Imagen / Banner */
-.auth-image-side {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  padding: 3.5rem;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  color: #ffffff;
-}
-
-.auth-image-side::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: linear-gradient(180deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.75) 100%);
-  z-index: 1;
-}
-
-.auth-image-content {
-  position: relative;
-  z-index: 2;
-}
-
-.auth-image-side h3 {
-  font-size: 2rem;
-  font-weight: 700;
-  color: #ffffff !important;
-  margin-bottom: 0.5rem;
-}
-
-.auth-image-side p {
-  font-size: 1rem;
-  color: #e2e8f0 !important;
-  line-height: 1.5;
-}
-
-/* Lado del Formulario */
-.auth-form-side {
-  padding: 4rem 3.5rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-/* Adaptación Responsiva para móviles */
-@media (max-width: 850px) {
-  .auth-card-split {
-    grid-template-columns: 1fr;
-  }
-
-  .auth-image-side {
-    display: none;
-  }
-
-  .auth-form-side {
-    padding: 2rem;
-  }
+  color: #a5b4fc;
 }

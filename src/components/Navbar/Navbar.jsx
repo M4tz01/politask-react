@@ -3,10 +3,10 @@ import "./Navbar.css";
 import { motion } from "framer-motion";
 import { Link, NavLink } from "react-router-dom";
 
-import logo from "../../assets/images/logo.png";
-import user from "../../assets/images/user.png";
+import logo from "../../assets/images/logo.webp";
+import user from "../../assets/images/user.webp";
 
-function Navbar({ darkMode, setDarkMode }) {
+function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   const toggleMenu = () => {
@@ -58,53 +58,39 @@ function Navbar({ darkMode, setDarkMode }) {
           </h1>
         </motion.div>
 
-        {/* BOTÓN MENÚ HAMBURGUESA */}
-        <button
-          className={`hamburger ${menuOpen ? "is-active" : ""}`}
-          onClick={toggleMenu}
-          aria-label="Toggle menu"
-        >
-          <span className="bar"></span>
-          <span className="bar"></span>
-          <span className="bar"></span>
-        </button>
+<ul className={`navbar__menu ${menuOpen ? "active" : ""}`}>
+                    {[
+                        ["Inicio", "/"],
+                        ["Nosotros", "/nosotros"],
+                        ["App", "/app"],
+                        ["Recompensas", "/recompensas"],
+                        ["Galería", "/galeria"],
+                        ["Contacto", "/contacto"],
+                    ].map(([text, href], index) => (
+                        <motion.li key={index} variants={itemVariants}>
 
-        {/* MENÚ DE NAVEGACIÓN */}
-        <ul className={`navbar__menu ${menuOpen ? "active" : ""}`}>
-          {[
-            ["Inicio", "#inicio"],
-            ["Nosotros", "/nosotros"],
-            ["App", "/app"],
-            ["Recompensas", "/recompensas"],
-            ["Galería", "/galeria"],
-            ["Contacto", "/contacto"],
-          ].map(([text, href], index) => (
-            <motion.li key={index} variants={itemVariants}>
-              {text === "Inicio" ? (
-                <motion.a
-                  href={href}
-                  onClick={closeMenu}
-                  whileHover={{
-                    y: -4,
-                    scale: 1.05,
-                    color: "#3f2beb",
-                  }}
-                  transition={{
-                    type: "spring",
-                    stiffness: 300,
-                  }}
-                >
-                  {text}
-                </motion.a>
-              ) : (
-                <NavLink
-                  className="navbar__link"
-                  to={href}
-                  onClick={closeMenu}
-                >
-                  {text}
-                </NavLink>
-              )}
+                {text === "Nosotros" || text === "App" || text === "Contacto"
+            || text === "Galeria" || text === "Recompensas" ? (
+              <NavLink className="navbar__link" to={href} onClick={closeMenu}>
+                {text}
+              </NavLink>
+            ) : (
+              <motion.a
+                href={href}
+                onClick={closeMenu}
+                whileHover={{
+                  y: -4,
+                  scale: 1.05,
+                  color: "#3f2beb",
+                }}
+                transition={{
+                  type: "spring",
+                  stiffness: 300,
+                }}
+              >
+                {text}
+              </motion.a>
+            )}
             </motion.li>
           ))}
         </ul>
@@ -112,13 +98,15 @@ function Navbar({ darkMode, setDarkMode }) {
         {/* BOTÓN DARK MODE + LOGIN */}
         <motion.div className="navbar__actions" variants={itemVariants}>
           <button
-            className="theme-toggle"
-            onClick={() => setDarkMode(!darkMode)}
-            aria-label="Cambiar tema"
+            className={`hamburger ${menuOpen ? "is-active" : ""}`}
+            onClick={toggleMenu}
+            aria-label="Abrir menú"
+            aria-expanded={menuOpen}
           >
-            {darkMode ? "☀️" : "🌙"}
+            <span className="bar"></span>
+            <span className="bar"></span>
+            <span className="bar"></span>
           </button>
-
           <div className="navbar__login">
             <Link
               to="/login"

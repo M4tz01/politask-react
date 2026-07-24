@@ -3,10 +3,10 @@ import Footer from "../components/Footer/Footer";
 import "../styles/Recompensas.css";
 
 
-import escudo from "../assets/images/escudo.jpg"
-import comida2 from "../assets/images/comida2.jpg"
-import juegos2 from "../assets/images/juegos2.jpg"
-import uniforme2 from "../assets/images/uniforme2.jpeg"
+import escudo from "../assets/images/escudo.webp"
+import comida2 from "../assets/images/comida2.webp"
+import juegos2 from "../assets/images/juegos2.webp"
+import uniforme2 from "../assets/images/uniforme2.webp"
 
 
 

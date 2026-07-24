@@ -1,28 +1,48 @@
 rules_version = '2';
-
 service cloud.firestore {
   match /databases/{database}/documents {
 
     match /tareas/{tareaId} {
 
-      // Crear tareas propias
       allow create: if request.auth != null
                     && request.resource.data.usuarioId == request.auth.uid;
 
-
-      // Todos los estudiantes autenticados pueden ver tareas
       allow read: if request.auth != null;
 
-
-      // Solo el dueño puede eliminar
       allow delete: if request.auth != null
                     && resource.data.usuarioId == request.auth.uid;
 
-
-      // Solo el dueño puede actualizar sus tareas
+      // El dueño edita su propia tarea o la confirma como completada
       allow update: if request.auth != null
                     && resource.data.usuarioId == request.auth.uid;
 
+      // Otro usuario acepta una tarea pendiente
+      allow update: if request.auth != null
+                    && resource.data.usuarioId != request.auth.uid
+                    && resource.data.estado == "Pendiente"
+                    && request.resource.data.estado == "En progreso"
+                    && request.resource.data.aceptadoPor == request.auth.uid
+                    && request.resource.data.usuarioId == resource.data.usuarioId
+                    && request.resource.data.puntos == resource.data.puntos;
+    }
+
+    match /usuarios/{userId} {
+
+      allow create: if request.auth != null
+                    && request.auth.uid == userId;
+
+      allow read: if request.auth != null;
+
+      // El propio usuario actualiza su documento (crear/eliminar tareas)
+      allow update: if request.auth != null
+                    && request.auth.uid == userId;
+
+      // Otro usuario le transfiere puntos (al confirmar una tarea completada)
+      // Solo puede AUMENTAR el saldo, y solo tocar el campo "puntos"
+      allow update: if request.auth != null
+                    && request.auth.uid != userId
+                    && request.resource.data.puntos > resource.data.puntos
+                    && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['puntos']);
     }
   }
 }

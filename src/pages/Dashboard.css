@@ -58,6 +58,7 @@
   padding: 4rem 0 6rem;
   display: grid;
   grid-template-columns: minmax(30rem, 0.82fr) minmax(40rem, 1.35fr);
+  grid-template-rows: auto auto;
   gap: 3rem;
   align-items: start;
 }
@@ -71,8 +72,20 @@
 }
 
 .dashboard__form-panel {
+  grid-column: 1;
+  grid-row: 1 / -1;
   position: sticky;
   top: 2rem;
+}
+
+.dashboard__list-panel {
+  grid-column: 2;
+  grid-row: 1;
+}
+
+.dashboard__list-panel + .dashboard__panel {
+  grid-column: 2;
+  grid-row: 2;
 }
 
 .dashboard__section-heading {
@@ -141,6 +154,19 @@
   color: #293a4e;
   font-size: 1.45rem;
   font-weight: 800;
+}
+.task-form__label-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.8rem;
+}
+
+.task-form__counter {
+  color: #94a3b8;
+  font-size: 1.2rem;
+  font-weight: 700;
+  white-space: nowrap;
 }
 
 .task-form input,
@@ -392,6 +418,55 @@
     width: 100%;
   }
 }
+
+.dashboard__stats-panel {
+  width: min(140rem, 92%);
+  margin: 3rem auto 0;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2.4rem;
+  align-items: center;
+}
+
+.stats-numbers {
+  display: grid;
+  gap: 1.4rem;
+}
+
+.stats-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  padding: 1.6rem 1.8rem;
+  border: 1px solid #dde6ef;
+  border-radius: 1.4rem;
+  background: #f8fafc;
+}
+
+.stats-card strong {
+  font-size: 2.6rem;
+  color: #293a4e;
+}
+
+.stats-card span {
+  font-size: 1.3rem;
+  color: #64748b;
+  font-weight: 700;
+}
+
+.stats-chart {
+  max-width: 26rem;
+  margin: 0 auto;
+}
+
+@media (max-width: 780px) {
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+}
 /* ===================== */
 /*      DARK MODE        */
 /* ===================== */
@@ -475,4 +550,19 @@
 .app.dark .dashboard__counter{
     background:#333;
     color:#ffffff;
+}
+.app.dark .task-form__counter {
+  color: #a3a3a3;
+}
+.app.dark .stats-card {
+  background: #2b2b2b;
+  border: 1px solid #444;
+}
+
+.app.dark .stats-card strong {
+  color: #ffffff;
+}
+
+.app.dark .stats-card span {
+  color: #bdbdbd;
 }

@@ -2,12 +2,12 @@ import Navbar from "../components/Navbar/Navbar";
 import Footer from "../components/Footer/Footer";
 import "../styles/Galeria.css";
 
-import aprendizaje from "../assets/images/aprendizaje.jpg"
-import sesiones from "../assets/images/sesiones.jpg"
-import comunidad from "../assets/images/comunidad.jpg"
-import ideas from "../assets/images/ideas.jpg"
-import logros from "../assets/images/logros.jpg"
-import crecimiento from "../assets/images/crecimiento.jpg"
+import aprendizaje from "../assets/images/aprendizaje.webp"
+import sesiones from "../assets/images/sesiones.webp"
+import comunidad from "../assets/images/comunidad.webp"
+import ideas from "../assets/images/ideas.webp"
+import logros from "../assets/images/logros.webp"
+import crecimiento from "../assets/images/crecimiento.webp"
 
 
 

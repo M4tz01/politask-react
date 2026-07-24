@@ -1,8 +1,8 @@
 import "./Rewards.css";
 
-import comida from "../../assets/images/comida.png";
-import uniforme from "../../assets/images/uniforme.png";
-import juegos from "../../assets/images/juegos.png";
+import comida from "../../assets/images/comida.webp";
+import uniforme from "../../assets/images/uniforme.webp";
+import juegos from "../../assets/images/juegos.webp";
 
 function Rewards() {
     return (
